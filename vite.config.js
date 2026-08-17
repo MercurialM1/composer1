@@ -17,6 +17,9 @@ export default defineConfig({
         tailwindcss(),
     ],
     server: {
+        hmr: {
+            overlay: false,
+        },
         watch: {
             ignored: ['**/storage/framework/views/**'],
         },
