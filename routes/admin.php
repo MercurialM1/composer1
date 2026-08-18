@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Http\Controllers\Admin\SlideController;
-
+use App\Http\Controllers\Admin\VideoController;
 Route::prefix('admin')
 //    ->middleware("auth")
     ->name('admin.')
@@ -19,5 +19,9 @@ Route::prefix('admin')
         })->name('datatable');
 
         Route::resource('slides', SlideController::class)->except(['show']);
+
+
+
+        Route::resource('videos', VideoController::class)->except(['show']);
 
     });

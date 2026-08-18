@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,63 +24,63 @@
 
     <style>
         .slide-preview {
-    width: 100px;
+            width: 100px;
             height: 60px;
             object-fit: cover;
             border-radius: 4px;
         }
         .btn-action {
-    margin: 0 2px;
+            margin: 0 2px;
         }
     </style>
 </head>
 <body class="layout-boxed">
-    <div id="load_screen">
-        <div class="loader">
-            <div class="loader-content">
-                <div class="spinner-grow align-self-center"></div>
-            </div>
+<div id="load_screen">
+    <div class="loader">
+        <div class="loader-content">
+            <div class="spinner-grow align-self-center"></div>
         </div>
     </div>
+</div>
 
-    <!-- NAVBAR -->
-    <div class="header-container container-xxl">
-        <header class="header navbar navbar-expand-sm expand-header">
-            <a href="javascript:void(0);" class="sidebarCollapse">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <line x1="3" y1="12" x2="21" y2="12"></line>
-                    <line x1="3" y1="6" x2="21" y2="6"></line>
-                    <line x1="3" y1="18" x2="21" y2="18"></line>
-                </svg>
-            </a>
+<!-- NAVBAR -->
+<div class="header-container container-xxl">
+    <header class="header navbar navbar-expand-sm expand-header">
+        <a href="javascript:void(0);" class="sidebarCollapse">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </a>
 
-            <ul class="navbar-item flex-row ms-lg-auto ms-0">
-                <li class="nav-item dropdown user-profile-dropdown order-lg-0 order-1">
-                    <a href="javascript:void(0);" class="nav-link dropdown-toggle user" id="userProfileDropdown" data-bs-toggle="dropdown">
-                        <div class="avatar-container">
-                            <div class="avatar avatar-sm avatar-indicators avatar-online">
-                                <img alt="avatar" src="{{ asset('src/assets/img/profile-30.png') }}" class="rounded-circle">
-                            </div>
+        <ul class="navbar-item flex-row ms-lg-auto ms-0">
+            <li class="nav-item dropdown user-profile-dropdown order-lg-0 order-1">
+                <a href="javascript:void(0);" class="nav-link dropdown-toggle user" id="userProfileDropdown" data-bs-toggle="dropdown">
+                    <div class="avatar-container">
+                        <div class="avatar avatar-sm avatar-indicators avatar-online">
+                            <img alt="avatar" src="{{ asset('src/assets/img/profile-30.png') }}" class="rounded-circle">
                         </div>
-                    </a>
-                    <div class="dropdown-menu position-absolute" aria-labelledby="userProfileDropdown">
-                        <div class="dropdown-item">
-                            <form method="POST" action="{{ route('logout') }}">
-@csrf
-<button type="submit" class="btn btn-link p-0 text-decoration-none text-dark">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-        <polyline points="16 17 21 12 16 7"></polyline>
-        <line x1="21" y1="12" x2="9" y2="12"></line>
-    </svg>
-    <span>Log Out</span>
-</button>
-</form>
-</div>
-</div>
-</li>
-</ul>
-</header>
+                    </div>
+                </a>
+                <div class="dropdown-menu position-absolute" aria-labelledby="userProfileDropdown">
+                    <div class="dropdown-item">
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="btn btn-link p-0 text-decoration-none text-dark">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                                    <polyline points="16 17 21 12 16 7"></polyline>
+                                    <line x1="21" y1="12" x2="9" y2="12"></line>
+                                </svg>
+                                <span>Log Out</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </header>
 </div>
 
 <!-- MAIN CONTAINER -->
@@ -107,8 +106,9 @@
             </div>
             <div class="shadow-bottom"></div>
             <ul class="list-unstyled menu-categories" id="accordionExample">
-                <li class="menu active">
-                    <a href="#sliders" data-bs-toggle="collapse" aria-expanded="true" class="dropdown-toggle">
+                <!-- Слайды -->
+                <li class="menu {{ Request::is('admin/slides*') ? 'active' : '' }}">
+                    <a href="#sliders" data-bs-toggle="collapse" aria-expanded="{{ Request::is('admin/slides*') ? 'true' : 'false' }}" class="dropdown-toggle">
                         <div>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
@@ -123,12 +123,38 @@
                             </svg>
                         </div>
                     </a>
-                    <ul class="collapse submenu list-unstyled show" id="sliders" data-bs-parent="#accordionExample">
-                        <li class="active">
+                    <ul class="collapse submenu list-unstyled {{ Request::is('admin/slides*') ? 'show' : '' }}" id="sliders" data-bs-parent="#accordionExample">
+                        <li class="{{ Request::routeIs('admin.slides.index') ? 'active' : '' }}">
                             <a href="{{ route('admin.slides.index') }}"> Все слайды </a>
                         </li>
-                        <li>
+                        <li class="{{ Request::routeIs('admin.slides.create') ? 'active' : '' }}">
                             <a href="{{ route('admin.slides.create') }}"> Добавить слайд </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- Видео -->
+                <li class="menu {{ Request::is('admin/videos*') ? 'active' : '' }}">
+                    <a href="#videos" data-bs-toggle="collapse" aria-expanded="{{ Request::is('admin/videos*') ? 'true' : 'false' }}" class="dropdown-toggle">
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                                <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                            </svg>
+                            <span>Видео</span>
+                        </div>
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </div>
+                    </a>
+                    <ul class="collapse submenu list-unstyled {{ Request::is('admin/videos*') ? 'show' : '' }}" id="videos" data-bs-parent="#accordionExample">
+                        <li class="{{ Request::routeIs('admin.videos.index') ? 'active' : '' }}">
+                            <a href="{{ route('admin.videos.index') }}"> Все видео </a>
+                        </li>
+                        <li class="{{ Request::routeIs('admin.videos.create') ? 'active' : '' }}">
+                            <a href="{{ route('admin.videos.create') }}"> Добавить видео </a>
                         </li>
                     </ul>
                 </li>

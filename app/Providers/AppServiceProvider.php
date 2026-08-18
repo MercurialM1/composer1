@@ -5,7 +5,6 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use App\Models\Slide;
-
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -28,5 +27,14 @@ class AppServiceProvider extends ServiceProvider
                 ->get();
             $view->with('slides', $slides);
         });
+
+            View::composer('components.nonUnique.VideoParalax', function ($view) {
+                $videos = \App\Models\Video::where('is_active', true)
+                    ->orderBy('order')
+                    ->get();
+                $view->with('videos', $videos);
+            });
     }
+
+
 }
