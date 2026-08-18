@@ -401,7 +401,7 @@
                 </a>
                 <ul class="collapse submenu list-unstyled" id="datatables" data-bs-parent="#accordionExample">
                     <li>
-                        <a href="./table-datatable-basic.html"> Basic </a>
+                        <a href="{{ route('admin.datatable') }}"> Basic </a>
                     </li>
                     <li>
                         <a href="./table-datatable-striped-table.html"> Striped </a>

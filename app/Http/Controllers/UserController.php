@@ -2,29 +2,17 @@
 
 namespace App\Http\Controllers;
 
-
-namespace App\Http\Controllers;
-
-use Illuminate\Http\RedirectResponse;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    /**
-     * Сохранить нового пользователя.
-     */
-    public function store(Request $request): RedirectResponse
-    {
-        $name = $request->input('name');
-
-        // Сохранить пользователя
-
-        return redirect('/users');
-    }
-
-    public function update(string $id)
+    public function index()
     {
 
+        $users = User::all();
+
+        return view('admin.users', compact('users'));
     }
 }
 
