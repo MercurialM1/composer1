@@ -2,9 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
+use App\Http\Controllers\Admin\SlideController;
 
 Route::prefix('admin')
-    ->middleware("auth")
+//    ->middleware("auth")
     ->name('admin.')
     ->group(function () {
 
@@ -16,5 +17,7 @@ Route::prefix('admin')
             $users = User::all();
             return view('admin.datatable', compact('users'));
         })->name('datatable');
+
+        Route::resource('slides', SlideController::class)->except(['show']);
 
     });

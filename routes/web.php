@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\SlideController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PageController;
@@ -140,6 +141,7 @@ Route::get('/admin/datatable', function () {
     $users = User::all();
     return view('admin.datatable', compact('users'));
 })->middleware('auth');
+
 
 require __DIR__.'/auth.php';
 require __DIR__.'/admin.php';
