@@ -158,6 +158,32 @@
                         </li>
                     </ul>
                 </li>
+                <!-- Галерея -->
+                <li class="menu {{ Request::is('admin/gallery*') ? 'active' : '' }}">
+                    <a href="#gallery" data-bs-toggle="collapse" aria-expanded="{{ Request::is('admin/gallery*') ? 'true' : 'false' }}" class="dropdown-toggle">
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                                <polyline points="21 15 16 10 5 21"></polyline>
+                            </svg>
+                            <span>Галерея</span>
+                        </div>
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </div>
+                    </a>
+                    <ul class="collapse submenu list-unstyled {{ Request::is('admin/gallery*') ? 'show' : '' }}" id="gallery" data-bs-parent="#accordionExample">
+                        <li class="{{ Request::routeIs('admin.gallery.categories.index') ? 'active' : '' }}">
+                            <a href="{{ route('admin.gallery.categories.index') }}"> Категории </a>
+                        </li>
+                        <li class="{{ Request::routeIs('admin.gallery.items.index') ? 'active' : '' }}">
+                            <a href="{{ route('admin.gallery.items.index') }}"> Работы </a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </nav>
     </div>

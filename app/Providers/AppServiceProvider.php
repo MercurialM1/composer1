@@ -28,13 +28,26 @@ class AppServiceProvider extends ServiceProvider
             $view->with('slides', $slides);
         });
 
-            View::composer('components.nonUnique.VideoParalax', function ($view) {
-                $videos = \App\Models\Video::where('is_active', true)
-                    ->orderBy('order')
-                    ->get();
-                $view->with('videos', $videos);
-            });
+        View::composer('components.nonUnique.VideoParalax', function ($view) {
+            $videos = \App\Models\Video::where('is_active', true)
+                ->orderBy('order')
+                ->get();
+            $view->with('videos', $videos);
+        });
+
+
+        View::composer('components.nonUnique.productgallery', function ($view) {
+            $categories = \App\Models\GalleryCategory::where('is_active', true)
+                ->orderBy('order')
+                ->get();
+
+            $items = \App\Models\GalleryItem::with('category')
+                ->where('is_active', true)
+                ->orderBy('order')
+                ->get();
+
+            $view->with('categories', $categories);
+            $view->with('items', $items);
+        });
     }
-
-
 }

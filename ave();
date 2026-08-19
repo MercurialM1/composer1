@@ -1,0 +1,6 @@
+[90m= [39m[34;4mApp\Models\GalleryItem[39;24m {#8481
+    [34mcategory_id[39m: [35m2[39m,
+    [34mtitle[39m: [32m"[39m[32mТестовая работа[39m[32m"[39m,
+    [34mimage[39m: [32m"[39m[32mtest.jpg[39m[32m"[39m,
+    [34mis_active[39m: [36mtrue[39m,
+  }
