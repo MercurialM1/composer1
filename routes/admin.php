@@ -12,9 +12,15 @@ Route::prefix('admin')
             return view('admin.index');
         })->name('index');
 
-        Route::get("datatable", function () {
-            $users = User::all();
-            return view('admin.datatable', compact('users'));
-        })->name('datatable');
+        route::get('/slider',function(){
+            return view('admin.slider.index');
+        })->name('slider');
 
+        route::get('/slider/edit',function(){
+            return view('admin.slider.edit');
+        })->name('slider.edit');
+
+        route::get('/slider/create',function(){
+            return view('admin.slider.create');
+        })->name('slider.create');
     });

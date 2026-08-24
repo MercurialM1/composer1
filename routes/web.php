@@ -136,10 +136,5 @@ Route::middleware('auth')->group(function () {
 
 
 
-Route::get('/admin/datatable', function () {
-    $users = User::all();
-    return view('admin.datatable', compact('users'));
-})->middleware('auth');
-
 require __DIR__.'/auth.php';
 require __DIR__.'/admin.php';
