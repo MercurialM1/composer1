@@ -7,8 +7,15 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-#[Table('Slider')] //Вроде названия таблицы
-class slider extends Model
+#[Table('Slider')] //Вроде название таблицы
+class slider extends Model // список с таблицами
 {
-
+    public $timestamps = false; //не добавлять время
+    protected $fillable = [ //записывает только это
+        'Zagalovok',
+        'Description',
+        'Image',
+        'Active',
+        'sort',
+    ];
 }

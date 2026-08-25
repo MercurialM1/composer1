@@ -36,9 +36,9 @@ Route::get('/contact', function () {
     return view('pages.contact');
 })->name('contact');
 
-Route::get('/slider', function () {
+Route::get('/sliderControl', function () {
     return view('pages.slider');
-})->name('slider');
+})->name('sliderControl');
 
 Route::get('/elements', function () {
     return view('pages.elements');

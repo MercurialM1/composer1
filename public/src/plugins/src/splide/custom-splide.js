@@ -11,7 +11,7 @@ var splideMultiple = new Splide( '.splide-multiple', {
     perPage: 3,
     rewind : true,
 } );
-  
+
   splideMultiple.mount();
 
 
@@ -26,7 +26,7 @@ splidePagiantion.on( 'pagination:mounted', function( data ) {
         item.li.parentNode.classList.add('numberic-pagination')
     } );
 } );
-  
+
   splidePagiantion.mount();
 
 // Thumbnail
@@ -43,7 +43,7 @@ var main = new Splide( '.splide-mainThubnail', {
 
 // Thumbnail -> Slider
 
-var thumbnails = new Splide( '#thumbnail-slider', {
+var thumbnails = new Splide( '#thumbnail-sliderControl', {
     rewind          : true,
     fixedWidth      : 104,
     fixedHeight     : 58,

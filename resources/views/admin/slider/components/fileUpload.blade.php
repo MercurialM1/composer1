@@ -27,41 +27,37 @@
                         </div>
                     </div>
                     <div class="widget-content widget-content-area">
-                        <form>
+
+
+                            <form method="POST" action="{{ route('admin.slider.store') }}" enctype="multipart/form-data">
+                                @csrf
                             <div class="form-group mb-4">
-                                <label for="exampleFormControlInput2">Email address</label>
-                                <input type="email" class="form-control" id="exampleFormControlInput2" placeholder="name@example.com">
+                                <label for="exampleFormControlInput2">Заголовок</label>
+                                <input type="text" name="Zagalovok" value="{{ $slider->Zagalovok ?? '' }}"> {{--если есть то показать,если нет тогда ничего--}}
                             </div>
+
                             <div class="form-group mb-4">
-                                <label for="exampleFormControlSelect1">Example select</label>
-                                <select class="form-select" id="exampleFormControlSelect1">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
-                            </div>
-                            <div class="form-group mb-4">
-                                <label for="exampleFormControlSelect2">Example multiple select</label>
-                                <select multiple="" class="form-control" id="exampleFormControlSelect2">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
-                            </div>
-                            <div class="form-group mb-4">
-                                <label for="exampleFormControlTextarea1">Example textarea</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                <label for="exampleFormControlTextarea1">Описание</label>
+                                <textarea name="Description">{{ $slider->Description ?? '' }}</textarea> {{--тоже самое с описанием--}}
                             </div>
                             <div class="form-group mb-4 mt-3">
-                                <label for="exampleFormControlFile1">Example file input</label>
-                                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                                <label for="exampleFormControlFile1">Фото</label>
+                                <input type="file" name="Image" class="form-control-file" id="exampleFormControlFile1">
                             </div>
-                            <input type="submit" name="time" class="mt-4 mb-4 btn btn-primary">
-                        </form>
+
+                                <div>
+                                    <label>Активно</label>
+                                    <input type="hidden" name="Active" value="0">
+                                    <input type="checkbox" name="Active" value="1">
+                                </div>
+                            <div>
+                                <label>Порядок</label>
+                                <input type="number" name="sort" value="0">
+                            </div>
+                                <input type="submit"  class="mt-4 mb-4 btn btn-primary">
+
+                            </form>
+
                     </div>
                 </div>
             </div>

@@ -24,7 +24,7 @@
                 </li>
                 <li class="dropdown"><a href="#" class="dropdown-toggle js-activated" data-toggle="dropdown">Sliders <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ route ('slider')}}">Fullscreen Slider</a></li>
+                        <li><a href="{{ route ('sliderControl')}}">Fullscreen Slider</a></li>
                         <li><a href="slider2.html">Fullwidth Slider</a></li>
                         <li><a href="slider3.html">Boxed Slider</a></li>
                     </ul>

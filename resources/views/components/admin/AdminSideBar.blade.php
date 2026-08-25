@@ -5,12 +5,12 @@
         <div class="navbar-nav theme-brand flex-row  text-center">
             <div class="nav-logo">
                 <div class="nav-item theme-logo">
-                    <a href="{{ route ('admin.index')}}">
+                    <a href="{{ route ('admin.slider.index')}}">
                         <img src="../src/assets/img/logo.svg" class="navbar-logo" alt="logo">
                     </a>
                 </div>
                 <div class="nav-item theme-text">
-                    <a href="{{ route ('admin.index')}}" class="nav-link"> CORK </a>
+                    <a href="{{ route ('admin.slider.index')}}" class="nav-link"> CORK </a>
                 </div>
             </div>
             <div class="nav-item sidebar-toggle">
@@ -35,8 +35,9 @@
                     <li class="active">
                         <a href="{{route('admin.slider.create')}}"> Создание </a>
                     </li>
-                    <li>
-                        <a href="{{route('admin.slider.edit')}}"> Редактирование </a>
+
+                    <li class="active">
+                        <a href="{{route('admin.slider.index')}}">Все слайдеры</a>
                     </li>
                 </ul>
             </li>

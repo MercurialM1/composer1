@@ -172,7 +172,7 @@ $(document).ready(function() {
             }
         }
     });
-    $('.basic-slider').owlCarousel({
+    $('.basic-sliderControl').owlCarousel({
         items: 1,
         nav: true,
         navText: ['', ''],

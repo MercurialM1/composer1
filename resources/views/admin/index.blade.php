@@ -41,7 +41,7 @@
 
         <!--  BEGIN CONTENT AREA  -->
 @yield('content')
-{{--@include('admin.slider.components.fileUpload')--}}
+{{--@include('admin.sliderControl.components.fileUpload')--}}
         <!--  BEGIN FOOTER  -->
 
         <!-- END MAIN CONTAINER -->

@@ -1,5 +1,5 @@
 // NO UI SLIDER
-    
+
 var html5Slider = document.getElementById('html5');
 
 noUiSlider.create(html5Slider, {
@@ -50,7 +50,7 @@ inputNumber.addEventListener('change', function(){
     html5Slider.noUiSlider.set([null, this.value]);
 });
 
-/*--------Non linear slider----------*/
+/*--------Non linear sliderControl----------*/
 
 var nonLinearSlider = document.getElementById('nonlinear');
 
@@ -77,8 +77,8 @@ var nodes = [
     document.getElementById('upper-value')  // 1
 ];
 
-// Display the slider value and how far the handle moved
-// from the left edge of the slider.
+// Display the sliderControl value and how far the handle moved
+// from the left edge of the sliderControl.
 nonLinearSlider.noUiSlider.on('update', function ( values, handle, unencoded, isTap, positions ) {
     nodes[handle].innerHTML = values[handle] + ' <span class="precentage-val">' + positions[handle].toFixed(2) + '% </span>';
 });
@@ -88,7 +88,7 @@ nonLinearSlider.noUiSlider.on('update', function ( values, handle, unencoded, is
 
 // setting up button clicks
 
-// Store the locked state and slider values.
+// Store the locked state and sliderControl values.
 
 var lockedState = false,
     lockedSlider = false,
@@ -117,10 +117,10 @@ function crossUpdate ( value, slider ) {
     if ( !lockedState ) return;
 
     // Select whether to increase or decrease
-    // the other slider value.
+    // the other sliderControl value.
     var a = slider1 === slider ? 0 : 1, b = a ? 0 : 1;
 
-    // Offset the slider value.
+    // Offset the sliderControl value.
     value -= lockedValues[b] - lockedValues[a];
 
     // Set the value
@@ -171,10 +171,10 @@ function setLockedValues ( ) {
 slider1.noUiSlider.on('change', setLockedValues);
 slider2.noUiSlider.on('change', setLockedValues);
 
-// The value will be send to the other slider,
+// The value will be send to the other sliderControl,
 // using a custom function as the serialization
 // method. The function uses the global 'lockedState'
-// variable to decide whether the other slider is updated.
+// variable to decide whether the other sliderControl is updated.
 
 slider1.noUiSlider.on('slide', function( values, handle ){
     crossUpdate(values[handle], slider2);

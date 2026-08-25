@@ -15,7 +15,7 @@ $("input[name='demo1']").TouchSpin({
 
 // Carousel
 
-var main = new Splide( '#main-slider', {
+var main = new Splide( '#main-sliderControl', {
     type       : 'fade',
     heightRatio: 0.5,
     pagination : false,
@@ -25,7 +25,7 @@ var main = new Splide( '#main-slider', {
     fixedHeight: 556,
 } );
 
-var thumbnails = new Splide( '#thumbnail-slider', {
+var thumbnails = new Splide( '#thumbnail-sliderControl', {
     rewind          : true,
     fixedWidth      : 104,
     fixedHeight     : 58,
@@ -55,7 +55,7 @@ thumbnails.mount();
 var colors = ['#4361ee', '#009688', '#008eff', '#7d30cb', '#f8538d', '#e2a03f', '#1b2e4b']
 
 document.querySelectorAll('.color-swatch input[name="flexRadioDefault"]').forEach((element, index, array) => {
-    element.style.backgroundColor = colors[index] 
+    element.style.backgroundColor = colors[index]
 })
 
 

@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('Slider', function (Blueprint $table) {
-            $table->id(); //Номер
-            $table->string('Zagalovok');
-            $table->string('Description');
-            $table->string('Image');
+        Schema::table('Slider', function (Blueprint $table) {
+          $table->integer('sort')->default(0);
+          $table->boolean('Active', true);  //
         });
     }
 
@@ -24,7 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
-        Schema::drop('flights');
+        Schema::table('Slider', function (Blueprint $table) {
+            //
+        });
     }
 };

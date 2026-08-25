@@ -1,4 +1,4 @@
-// Bootstrap range slider
+// Bootstrap range sliderControl
 
 progressBarCount('.progress-range-counter');
 

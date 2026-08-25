@@ -135,7 +135,7 @@
                                         <div class="item"><img src="{{ asset('style/images/art/bs2.jpg') }}" alt=""/>
                                         </div>
                                     </div>
-                                    <!-- /.basic-slider -->
+                                    <!-- /.basic-sliderControl -->
                                 </div>
                                 <!-- /.gallery-wrapper -->
                                 <p>Cras mattis consectetur purus sit amet fermentum. Duis mollis, est non commodo
