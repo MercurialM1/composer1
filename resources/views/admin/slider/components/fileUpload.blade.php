@@ -28,9 +28,12 @@
                     </div>
                     <div class="widget-content widget-content-area">
 
-
-                            <form method="POST" action="{{ route('admin.slider.store') }}" enctype="multipart/form-data">
-                                @csrf
+{{--если слайдер сущетвует то его марштрут с id если не то создать--}}
+                        <form method="POST" action="{{ isset($slider) ? route('admin.slider.update', $slider->id) : route('admin.slider.store') }}" enctype="multipart/form-data"> /
+                            @csrf {{-- какая то защита--}}
+                            @if(isset($slider))
+                                @method('PUT')
+                            @endif
                             <div class="form-group mb-4">
                                 <label for="exampleFormControlInput2">Заголовок</label>
                                 <input type="text" name="Zagalovok" value="{{ $slider->Zagalovok ?? '' }}"> {{--если есть то показать,если нет тогда ничего--}}

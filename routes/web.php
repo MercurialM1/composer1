@@ -3,12 +3,16 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PageController;
+use App\Models\slider;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware;
 use App\Models\User;
-
+//сортировка и что бы видел $slider
 Route::get('/', function () {
-    return view('index-all');
+    $sliders=slider::where('Active',true);
+    $sliders=$sliders->orderBy('sort','ASC');
+    $sliders=$sliders->get();
+    return view('index-all',compact('sliders'));
 });
 
 Route::get('/das', function () {

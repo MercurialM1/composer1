@@ -13,6 +13,8 @@
                     <th>Активно</th>
                     <th>Заголовок</th>
                     <th>Описание</th>
+                    <th>РЕдактирование</th>
+                    <th>X</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -34,9 +36,9 @@
                     </td>
                     <td>
                         @if ($slider->Active)
-                    <h1>Активно</h1>
+                    <h1>+</h1>
                         @else
-                    <h2>Не активно</h2>
+                    <h2>-</h2>
                         @endif
                     </td>
 
@@ -50,6 +52,18 @@
                             <span class="text-muted">{{$slider->Description}}</span>
 
                         @endif
+                    </td>
+                    <td>
+                        <a href="{{route('admin.slider.edit',$slider )}}">ИЗМЕНИТЬ</a>
+                    </td>
+                    <td>
+                        <form
+                            action ="{{route('admin.slider.destroy',$slider->id)}}" method="POST"/>
+                        @method('DELETE')
+                        <button
+                            type="submit">удалить
+                        </button>
+
                     </td>
 
 

@@ -12,6 +12,7 @@ class sliderControl extends Controller
     /**
      * Display a listing of the resource.
      */
+
     public function index(): View
     {
     $sliders = \App\Models\slider::all(); // список слайдеров
@@ -23,12 +24,13 @@ class sliderControl extends Controller
      */
     public function create()
     {
-        return view('admin.slider.create',);//
+        return view('admin.slider.create');//
     }
 
     /**
      * Store a newly created resource in storage.
      */
+
     public function store(Request $request) //проверка,создание,перенаправление
     {
         $request->validate([ //параметры
@@ -59,17 +61,34 @@ class sliderControl extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id) // poisk
+
     {
-        //
+     $slider =Slider::find($id);
+     return view('admin.slider.edit',compact('slider'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request,$id)
     {
-        //
+        $request->validate([ //только такие парамметры?
+            'Zagalovok' => 'required|string|max:255',
+            'Description' => 'required|string|max:255',
+            'Image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'Active' => 'required|boolean',
+            'sort' => 'required|integer',
+        ]);
+        $slider = Slider::find($id);
+        $slider->update([
+            'Zagalovok' => $request->Zagalovok,
+            'Description' => $request->Description,
+            'Image' => $request->hasFile('Image') ? $request->file('Image')->store('sliders', 'public') : $slider->Image, //бля спасибо php storm
+            'Active' => $request->Active,
+            'sort' => $request->sort,
+        ]);//
+        return redirect()->route('admin.slider.index');
     }
 
     /**
@@ -77,6 +96,8 @@ class sliderControl extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $slider = Slider::findOrFail($id);
+        $slider->delete();
+        return redirect()->route('admin.slider.index');//
     }
 }
