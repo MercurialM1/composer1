@@ -77,7 +77,7 @@ class sliderControl extends Controller
             'Zagalovok' => 'required|string|max:255',
             'Description' => 'required|string|max:255',
             'Image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'Active' => 'required|boolean',
+            'Active' => 'required',
             'sort' => 'required|integer',
         ]);
         $slider = Slider::find($id);

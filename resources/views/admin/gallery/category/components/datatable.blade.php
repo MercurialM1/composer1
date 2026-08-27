@@ -8,57 +8,42 @@
                 <thead>
                 <tr>
                     <th>1111111111</th>
-                    <th>Номер</th>
-                    <th>Изображение</th>
+                    <th>Название</th>
+                    <th>Порядок</th>
                     <th>Активно</th>
-                    <th>Заголовок</th>
-                    <th>Описание</th>
                     <th>Редактирование</th>
                     <th>X</th>
                 </tr>
                 </thead>
                 <tbody>
 
-                @foreach($sliders as $slider)
+                @foreach($categories as $category)
                 <tr>
                     <td>
                         1
                     </td>
                     <td>
-                        {{ $slider->id }}
+                        {{ $category->name}}
+                    </td>
+
+
+                    <td>
+                        {{$category->sort}}
                     </td>
                     <td>
-                        @if($slider->Image)
-                            <img src="{{ asset('storage/' . $slider->Image) }}" alt="{{ $slider->Zagalovok }}" style="max-height: 50px; object-fit: cover;">
+                        @if ($category->is_active)
+                            <h1>✅</h1>
                         @else
-                            <span class="text-muted">Нет фото</span>
-                    @endif
-                    </td>
-                    <td>
-                        @if ($slider->Active)
-                    <h1>+</h1>
-                        @else
-                    <h2>-</h2>
+                            <h2>❌</h2>
                         @endif
                     </td>
 
                     <td>
-                        {{$slider->Zagalovok}}
-                    </td>
-
-                    <td>
-                        @if($slider->Description)
-
-                            <span class="text-muted">{{$slider->Description}}</span>
-
-                        @endif
-                    </td>
-                    <td>
-                        <a href="{{route('admin.slider.edit',$slider )}}">ИЗМЕНИТЬ</a>
+                        <a href="{{route('category.edit',$category )}}">ИЗМЕНИТЬ</a>
                     </td>
                     <td>
                         <form
-                            action ="{{route('admin.slider.destroy',$slider->id)}}" method="POST"/>
+                            action ="{{route('category.destroy',$category->id)}}" method="POST"/>
                         @method('DELETE')
                         <button
                             type="submit">удалить

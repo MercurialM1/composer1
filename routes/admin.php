@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Http\Controllers\Admin\sliderControl;
+use App\Http\Controllers\Admin\categoryController;
 
 Route::prefix('admin')
     ->middleware("auth")
@@ -31,4 +32,8 @@ Route::prefix('admin')
             'edit' => 'slider.edit',
         ]);
     });
-
+        Route::resource('category', \App\Http\Controllers\Admin\CategoryController::class)->names([
+            'index' => 'category.index',
+            'create' => 'category.create',
+            'edit' => 'category.edit',
+        ]);
