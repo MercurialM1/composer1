@@ -64,10 +64,10 @@
                         <a href="{{route('category.index')}}">Все категории</a>
                     </li>
                     <li class="active">
-                        <a href="{{route('admin.slider.index')}}">Фото</a>
+                        <a href="{{route('photo.create')}}">Фото</a>
                     </li>
                     <li class="active">
-                        <a href="{{route('admin.slider.index')}}">Все фото</a>
+                        <a href="{{route('photo.index')}}">Все фото</a>
                     </li>
                     <li class="active">
                         <a href="{{route('admin.slider.index')}}">Галерея</a>

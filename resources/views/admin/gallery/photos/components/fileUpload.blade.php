@@ -23,22 +23,32 @@
                     <div class="widget-header">
                         <div class="row">
                             <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                <h4>Создание категории</h4>
+                                <h4>Создание фото</h4>
                             </div>
                         </div>
                     </div>
                     <div class="widget-content widget-content-area">
+                    <form method="POST" action="{{ route('photo.store') }}" enctype="multipart/form-data">
+                          @csrf
+                        @foreach($categories as $category) {{--вставить категорию по id--}}
+                            <label>
+                                {{ $category->name }}
+                                <input type="checkbox" name="categories[]" value="{{ $category->id }}">
+                            </label>
+                        @endforeach
+                        <div class="form-group mb-4">
+                            <label for="exampleFormControlInput2">Заголовок</label>
+                            <input type="text" name="title" value="{{old('title')}}"> {{--сохраниение если не надо менять--}}
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="exampleFormControlTextarea1">Описание</label>
+                            <textarea name="description">{{old('description')}}</textarea> {{--тоже самое с описанием--}}
+                        </div>
 
-{{--если слайдер сущетвует то его марштрут с id если не то создать--}}
-                        <form method="POST" action="{{ isset($category) ? route('category.update', $category->id) : route('category.store') }}" enctype="multipart/form-data">
-                            @csrf {{-- какая то защита--}}
-                            @if(isset($category))
-                                @method('PUT')
-                            @endif
-                            <div class="form-group mb-4">
-                                <label for="exampleFormControlInput2">Название</label>
-                                <input type="text" name="name" value="{{ $category->name ?? '' }}"> {{--если есть то показать,если нет тогда ничего--}}
-                            </div>
+                        <div class="form-group mb-4 mt-3">
+                            <label for="exampleFormControlFile1">Фото</label>
+                            <input type="file" name="path" class="form-control-file" id="exampleFormControlFile1">
+                        </div>
 
                                 <div>
                                     <label>Активно</label>
@@ -47,7 +57,7 @@
                                 </div>
                             <div>
                                 <label>Порядок</label>
-                                <input type="number" name="sort" value="{{ old('sort', $category->sort ?? 0) }}">
+                                <input type="number" name="sort" value="{{ old('sort', 0) }}">
                             </div>
                                 <input type="submit"  class="mt-4 mb-4 btn btn-primary">
 

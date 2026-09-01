@@ -15,7 +15,7 @@ return new class extends Migration
            $table->id();
            $table->foreignId('category_id')->constrained()->onDelete('cascade'); // нельзя добавить к несуществующей категории и если удалить категорию удалятся все связи
            $table->foreignId('photo_id')->constrained()->onDelete('cascade');
-           $table->unique(['category_id', 'photo_id']); //как стеш с униками в пое 2
+           $table->unique(['category_id', 'photo_id']); //как стеш с униками в пое
        }); //
     }
 

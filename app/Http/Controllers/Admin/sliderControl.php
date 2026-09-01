@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 use App\Models\slider;
 
@@ -97,6 +98,7 @@ class sliderControl extends Controller
     public function destroy(string $id)
     {
         $slider = Slider::findOrFail($id);
+        Storage::disk('public')->delete($slider->Image);
         $slider->delete();
         return redirect()->route('admin.slider.index');//
     }

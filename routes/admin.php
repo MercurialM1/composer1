@@ -37,3 +37,9 @@ Route::prefix('admin')
             'create' => 'category.create',
             'edit' => 'category.edit',
         ]);
+
+        Route::resource('photo', \App\Http\Controllers\Admin\PhotoController::class)->names([
+            'index' => 'photo.index',
+            'create' => 'photo.create',
+            'edit' => 'photo.edit',
+        ]);

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 #[Table('categories')]
 class Category extends Model
 {
+    public $timestamps = false;
     protected $fillable = [
         'name',
         'sort',
