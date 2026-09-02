@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\Photo;
 use App\Http\Controllers\Admin\CategoryController;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Storage; //удаление
 
 class PhotoController extends Controller
 {
@@ -53,7 +53,7 @@ class PhotoController extends Controller
 
         ]);
         if ($request->has('categories')) {//Привязка категории
-            $photo->categories()->attach($request->categories);
+            $photo->categories()->attach($request->categories); //изменение в 3 таблице
         }
         return redirect()->route('photo.index');
     }
@@ -101,8 +101,8 @@ class PhotoController extends Controller
             'sort' => $request->sort,
 
         ]);
-        if ($request->input('categories',[])) {//категория
-            $photo->categories()->sync($request->categories); //обновление связей
+         $request->input('categories',[]); {//категория
+            $photo->categories()->sync($request->categories); //обновление связей в 3 таблице
         }
         return redirect()->route('photo.index');
 

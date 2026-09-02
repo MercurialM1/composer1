@@ -29,7 +29,7 @@
                     <div class="widget-content widget-content-area">
 
 {{--если слайдер сущетвует то его марштрут с id если не то создать--}}
-                        <form method="POST" action="{{ isset($slider) ? route('admin.slider.update', $slider->id) : route('admin.slider.store') }}" enctype="multipart/form-data"> /
+                        <form method="POST" action="{{ isset($slider) ? route('admin.slider.update', $slider->id) : route('admin.slider.store') }}" enctype="multipart/form-data">
                             @csrf {{-- какая то защита--}}
                             @if(isset($slider))
                                 @method('PUT')

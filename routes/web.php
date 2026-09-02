@@ -3,16 +3,26 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PageController;
+use App\Models\Category;
+use App\Models\Photo;
 use App\Models\slider;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware;
 use App\Models\User;
+use App\Models\contact;
+use App\Http\Controllers\ViewContactController;
 //сортировка и что бы видел $slider
 Route::get('/', function () {
     $sliders=slider::where('Active',true);
     $sliders=$sliders->orderBy('sort','ASC');
     $sliders=$sliders->get();
-    return view('index-all',compact('sliders'));
+    $photos=Photo::where('is_active',true);
+    $photos=$photos->orderBy('sort','ASC');
+    $photos=$photos->get();
+    $categories=Category::all();
+    $categories=$categories->sortBy('sort');
+//    $categories=$categories->get();
+    return view('index-all',compact('sliders','photos','categories'));
 });
 
 Route::get('/das', function () {
@@ -36,9 +46,7 @@ Route::get('/blog', function () {
     return view('pages.blog');
 })->name('blog');
 
-Route::get('/contact', function () {
-    return view('pages.contact');
-})->name('contact');
+Route::get('/contact', [ViewContactController::class, 'index'])->name('contact');// использует контроллер
 
 Route::get('/sliderControl', function () {
     return view('pages.slider');

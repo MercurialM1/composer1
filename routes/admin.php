@@ -43,3 +43,7 @@ Route::prefix('admin')
             'create' => 'photo.create',
             'edit' => 'photo.edit',
         ]);
+        //потом вернусь сюда
+        Route::resource('contactus', \App\Http\Controllers\Admin\ContactController::class)->names([
+            'index' => 'contactus.index',
+        ]);

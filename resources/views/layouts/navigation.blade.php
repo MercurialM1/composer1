@@ -5,10 +5,10 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('login') }}">
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
                     </a>
-                    <a href="{{ route('admin.index') }}">
+                    <a href="{{ route('login') }}">
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
 
                         </a>
@@ -20,9 +20,10 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('admin.slider.edit')" :active="request()->routeIs('admin.index')">
+                    <x-nav-link :href="route('admin.slider.index')" :active="request()->routeIs('admin.index')">
                         {{ __('Admin Panel') }}
                     </x-nav-link>
+
                 </div>
             </div>
 
