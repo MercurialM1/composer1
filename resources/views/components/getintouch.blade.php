@@ -7,8 +7,9 @@
                 venenatis dapibus posuere velit aliquet. Maecenas faucibus.</p>
             <div class="divide10"></div>
             <div class="form-container">
-                <form action="contact/vanilla-form.php" method="post" class="vanilla vanilla-form"
+                <form action="{{route('contactus.store')}}" method="post" class="vanilla vanilla-form"
                       novalidate="novalidate">
+                    @csrf
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-field">
@@ -31,7 +32,7 @@
                         <div class="col-sm-6">
                             <div class="form-field">
                                 <label>
-                                    <input type="tel" name="tel" placeholder="Phone">
+                                    <input type="tel" name="phone" placeholder="Phone">
                                     <i class="icon-phone"></i></label>
                             </div>
                             <!--/.form-field -->
@@ -41,11 +42,11 @@
                             <div class="form-field">
                                 <label class="custom-select">
                                     <select name="department" required="required">
-                                        <option value="">Select Department</option>
-                                        <option value="Sales">Sales</option>
-                                        <option value="Marketing">Marketing</option>
-                                        <option value="Support">Customer Support</option>
-                                        <option value="Other">Other</option>
+                                        <option value="">Тип сотрудничества</option>
+                                        <option value="Продажи">Продажи</option>
+                                        <option value="Сотрудничество">Сотрудничество</option>
+                                        <option value="Маркетинг">Маркетинг</option>
+                                        <option value="Другое">Другое</option>
                                     </select>
                                     <i class="icon-ok"></i><span><!-- fake select handler --></span> </label>
                             </div>

@@ -28,7 +28,7 @@
                         </div>
                     </div>
                     <div class="widget-content widget-content-area">
-                    <form method="POST" action="{{ route('photo.store') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('admin.photo.store') }}" enctype="multipart/form-data">
                           @csrf
                         @foreach($categories as $category) {{--вставить категорию по id--}}
                             <label>

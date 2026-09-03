@@ -30,7 +30,7 @@
                     <div class="widget-content widget-content-area">
 
 {{--если слайдер сущетвует то его марштрут с id если не то создать--}}
-                        <form method="POST" action="{{ isset($category) ? route('category.update', $category->id) : route('category.store') }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ isset($category) ? route('admin.category.update', $category->id) : route('admin.category.store') }}" enctype="multipart/form-data">
                             @csrf {{-- какая то защита--}}
                             @if(isset($category))
                                 @method('PUT')

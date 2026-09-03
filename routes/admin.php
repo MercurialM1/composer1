@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Http\Controllers\Admin\sliderControl;
 use App\Http\Controllers\Admin\categoryController;
+use App\Http\Controllers\Admin\ContactController;
 
 Route::prefix('admin')
     ->middleware("auth")
@@ -31,7 +32,7 @@ Route::prefix('admin')
             'create' => 'slider.create',
             'edit' => 'slider.edit',
         ]);
-    });
+
         Route::resource('category', \App\Http\Controllers\Admin\CategoryController::class)->names([
             'index' => 'category.index',
             'create' => 'category.create',
@@ -44,6 +45,7 @@ Route::prefix('admin')
             'edit' => 'photo.edit',
         ]);
         //потом вернусь сюда
-        Route::resource('contactus', \App\Http\Controllers\Admin\ContactController::class)->names([
-            'index' => 'contactus.index',
-        ]);
+        Route::get('/contactus', [ContactController::class, 'index'])->name('contactus.index');
+
+        Route::delete('/contactus/{id}', [ContactController::class, 'destroy'])->name('contactus.destroy');
+    });

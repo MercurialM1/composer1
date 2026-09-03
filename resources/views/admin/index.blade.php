@@ -15,6 +15,8 @@
     <link href="{{ asset('src/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('layouts/vertical-dark-menu/css/light/plugins.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('layouts/vertical-dark-menu/css/dark/plugins.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('layouts/vertical-dark-menu/css/light/structure.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('layouts/vertical-dark-menu/css/dark/structure.css') }}" rel="stylesheet" type="text/css" />
     <!-- END GLOBAL MANDATORY STYLES -->
 
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
@@ -29,21 +31,17 @@
     <div id="load_screen"> <div class="loader"> <div class="loader-content">
         <div class="spinner-grow align-self-center"></div>
     </div></div></div>
+    <button class="theme-toggle" style="display: none;"></button>
     <!--  END LOADER -->
 
     <!--  BEGIN NAVBAR  -->
     <!--  END NAVBAR  -->
 
     <!--  BEGIN MAIN CONTAINER  -->
-
-        <!--  BEGIN SIDEBAR  -->
-@include('components.admin.AdminSideBar')        <!--  END SIDEBAR  -->
-
-        <!--  BEGIN CONTENT AREA  -->
-@yield('content')
-{{--@include('admin.sliderControl.components.fileUpload')--}}
-        <!--  BEGIN FOOTER  -->
-
+    <div class="main-container" id="container"> {{--надо было оставить --}}
+        @include('components.admin.AdminSideBar')        <!--  END SIDEBAR  -->
+        @yield('content')
+    </div>
         <!-- END MAIN CONTAINER -->
 
     <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
@@ -55,7 +53,7 @@
 
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
     <script src="{{ asset('src/plugins/src/apex/apexcharts.min.js') }}"></script>
-    <script src="{{ asset('src/assets/js/dashboard/dash_1.js') }}"></script>
+{{--    <script src="{{ asset('src/assets/js/dashboard/dash_1.js') }}"></script>--}} {{--шо бы не ломалось--}}
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 </body>
 </html>

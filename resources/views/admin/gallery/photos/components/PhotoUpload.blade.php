@@ -28,7 +28,7 @@
                         </div>
                     </div>
                     <div class="widget-content widget-content-area">
-                    <form method="POST" action="{{ route('photo.update',$photo->id) }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('admin.photo.update',$photo->id) }}" enctype="multipart/form-data">
                         @method('PUT')
 @csrf
 

@@ -4,8 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Model;
-#[Table(name: 'contact')]
-class contact extends Model
+class Contact extends Model
 {
     public $timestamps = false;
     protected $fillable = [
@@ -14,6 +13,8 @@ class contact extends Model
         'phone',
         'message',
         'status',
+        'subject',
+        'department',
 
     ];
 }

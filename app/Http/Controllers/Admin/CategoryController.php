@@ -42,7 +42,7 @@ class CategoryController extends Controller
             'is_active' => $request->is_active,
 
         ]);//
-        return redirect()->route('category.index');
+        return redirect()->route('admin.category.index');
 
     }
 
@@ -82,7 +82,7 @@ class CategoryController extends Controller
             'is_active' => $request->is_active,
 
         ]);
-        return redirect()->route('category.index');
+        return redirect()->route('admin.category.index');
     }
 
     /**
@@ -92,6 +92,6 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail($id);
         $category->delete();
-        return redirect()->route('category.index');
+        return redirect()->route('admin.category.index');
     }
 }

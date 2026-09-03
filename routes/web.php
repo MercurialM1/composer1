@@ -10,7 +10,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware;
 use App\Models\User;
 use App\Models\contact;
-use App\Http\Controllers\ViewContactController;
+use App\Http\Controllers\Admin\ContactController;
+use App\Http\Controllers\Admin\sliderControl;
+
 //сортировка и что бы видел $slider
 Route::get('/', function () {
     $sliders=slider::where('Active',true);
@@ -25,9 +27,7 @@ Route::get('/', function () {
     return view('index-all',compact('sliders','photos','categories'));
 });
 
-Route::get('/das', function () {
-    return view('index-all');
-})->name('home');
+Route::get('/das', [sliderControl::class, 'index'])->name('das');
 
 route::get('/blog-post', function () {
     return view('pages.blog-post');
@@ -46,7 +46,9 @@ Route::get('/blog', function () {
     return view('pages.blog');
 })->name('blog');
 
-Route::get('/contact', [ViewContactController::class, 'index'])->name('contact');// использует контроллер
+Route::get('/contact', [ContactController::class, 'create'])->name('contact');// использует контроллер
+
+Route::post('/contact', [ContactController::class, 'store'])->name('contactus.store');
 
 Route::get('/sliderControl', function () {
     return view('pages.slider');

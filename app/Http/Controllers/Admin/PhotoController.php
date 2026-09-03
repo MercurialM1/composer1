@@ -55,7 +55,7 @@ class PhotoController extends Controller
         if ($request->has('categories')) {//Привязка категории
             $photo->categories()->attach($request->categories); //изменение в 3 таблице
         }
-        return redirect()->route('photo.index');
+        return redirect()->route('admin.photo.index');
     }
 
     /**
@@ -104,7 +104,7 @@ class PhotoController extends Controller
          $request->input('categories',[]); {//категория
             $photo->categories()->sync($request->categories); //обновление связей в 3 таблице
         }
-        return redirect()->route('photo.index');
+        return redirect()->route('admin.photo.index');
 
     }
 
@@ -116,6 +116,6 @@ class PhotoController extends Controller
         $photo = Photo::findOrFail($id);
         Storage::disk('public')->delete($photo->path);//удаление файла из папки
         $photo->delete();
-        return redirect()->route('photo.index');
+        return redirect()->route('admin.photo.index');
     }
 }
