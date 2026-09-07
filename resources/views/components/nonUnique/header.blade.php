@@ -12,12 +12,12 @@
             <ul class="nav navbar-nav">
                 <li class="current dropdown"><a href="#" class="dropdown-toggle js-activated" data-toggle="dropdown">Home13133131 <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ route ('home') }}">Home Layout 1</a></li>
+                        <li><a href="{{ url('/') }}">Home Layout 1</a></li>
                         <li><a href="index2.html">Home Layout 2</a></li>
                         <li><a href="index3.html">Home Layout 3</a></li>
                         <li><a href="index4.html">Home Layout 4</a></li>
                         <li><a href="index5.html">Home Layout 5</a></li>
-                        <li><a href="{{ route ('home') }}">Home Layout All</a></li>
+                        <li><a href="{{ url('/') }}">Home Layout All</a></li>
                         <li><a href="{{route ('animation') }}">Scroll Animation</a></li>
                         <li><a href="{{route('onepage')}}">Onepage Layout</a></li>
                     </ul>

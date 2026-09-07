@@ -48,4 +48,7 @@ Route::prefix('admin')
         Route::get('/contactus', [ContactController::class, 'index'])->name('contactus.index');
 
         Route::delete('/contactus/{id}', [ContactController::class, 'destroy'])->name('contactus.destroy');
+
+        Route::post('/contactus/{id}/create-user', [ContactController::class, 'createUser'])
+            ->name('contactus.createUser');
     });

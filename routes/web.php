@@ -27,7 +27,9 @@ Route::get('/', function () {
     return view('index-all',compact('sliders','photos','categories'));
 });
 
-Route::get('/das', [sliderControl::class, 'index'])->name('das');
+//Route::get('/',function (){
+//    return view('index-all');
+//})->name('index');
 
 route::get('/blog-post', function () {
     return view('pages.blog-post');
@@ -36,7 +38,7 @@ route::get('/blog-post', function () {
 
 Route::get('/about1', function () {
     return view('pages.about');
-})->name('about1');
+})->name('about1');http://localhost/
 
 Route::get('/portfolio', function () {
     return view('pages.portfolio');

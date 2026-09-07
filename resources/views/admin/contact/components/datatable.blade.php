@@ -13,7 +13,6 @@
                             </div>
                         </div>
                     <div class="widget-content widget-content-area br-8">
-                        <a href class ='button' {{route('admin.photo.create')}}>Добавить фото</a>
                         <table id="zero-config" class="table dt-table-hover" style="width:100%">
                             <thead>
                             <tr>
@@ -23,6 +22,7 @@
                                 <th>Телефон</th>
                                 <th>Тип сотрудничества</th>
                                 <th>Сообщение</th>
+                                <th>Аккаунт</th>
                                 <th>X</th>
                             </tr>
                             </thead>
@@ -49,8 +49,18 @@
                                 {{$contact->message}}
                             </th>
                             <td>
-                                <form
-                                    action ="{{route('admin.contactus.destroy',$contact->id)}}" method="POST">
+                                @if(!$contact->user_id)
+                                    <form action="{{ route('admin.contactus.createUser',$contact->id) }}" method="post">
+                                        @csrf
+                                        <button type="submit" class="btn btn-sm btn-primary">Создать аккаунт</button>
+                                    </form>
+                                @else
+                                    <span style="color: #0E9A00">✅ Аккаунт создан</span>
+                                @endif
+                            </td>
+                            <td>
+                                <form action ="{{route('admin.contactus.destroy',$contact->id)}}" method="POST">
+                                    @csrf
                                     @method('DELETE')
                                     <button
                                         type="submit">удалить

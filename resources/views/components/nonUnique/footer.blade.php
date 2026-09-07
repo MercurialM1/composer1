@@ -98,7 +98,7 @@
         <hr />
         <p class="copyright pull-left">© 2015 Hygge. All rights reserved. Theme by <a href="http://elemisfreebies.com">elemis</a>.</p>
         <ul class="footer-menu pull-right">
-            <li><a href="{{ route ('home') }}">Home</a></li>
+            <li><a href="{{ url('/') }}">Home</a></li>
             <li><a href="{{ route ('about1') }}">About</a></li>
             <li><a href="{{ route ('portfolio') }}">Portfolio</a></li>
             <li><a href="{{ route ('blog') }}">Blog</a></li>

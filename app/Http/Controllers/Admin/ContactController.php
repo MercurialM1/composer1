@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\View\View;
 use App\Models\Contact;
-
+use Illuminate\Support\Str;
+use App\Models\User;
 class ContactController extends Controller
 {
     public function index(): View
@@ -36,7 +39,7 @@ class ContactController extends Controller
            'phone' => $request->phone,
            'department' => $request->department,
        ]);
-       redirect('pages.contact.index')->with('success', 'Message sent successfully');
+      return redirect()->route('contact')->with('success', 'Message sent successfully');
     }
     public function destroy(string $id)
     {
@@ -44,7 +47,26 @@ class ContactController extends Controller
         $contact->delete();
         return redirect()->route('admin.contactus.index');
     }
+    public function createUser(string $id){
+        $contact = Contact::findOrFail($id);
+        if ($contact->user_id) { // проверка существует ли пользователь
+          return redirect()->route('admin.contactus.index')->with('fail', 'Аккаунт уже создан ');
+        }
+        else {//создание пользователя
+            $password = Str::random(10);
+            $user = User::create([
+                'name' => $contact->name,
+                'email' => $contact->email,
+                'password' => Hash::make($password),//какже это просто в ларе
+            ]);
+            $contact->user_id = $user->id;
+            $contact->status = 'approved';
+            $contact->save();
+
+            Mail::raw("Логин: {$contact->email}, пароль: {$password}", function ($message) use ($contact) {//отправка письма
+                $message->to($contact->email)->subject('Тема');
+            });
+            return redirect()->route('admin.contactus.index')->with('success', 'Аккаунт создан');
+        }
+    }
 }
-
-
-
