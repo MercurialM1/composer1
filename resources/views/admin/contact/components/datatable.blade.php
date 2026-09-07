@@ -23,7 +23,7 @@
                                 <th>Тип сотрудничества</th>
                                 <th>Сообщение</th>
                                 <th>Аккаунт</th>
-                                <th>X</th>
+                                <th>Заявка</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -49,13 +49,21 @@
                                 {{$contact->message}}
                             </th>
                             <td>
-                                @if(!$contact->user_id)
+                                @if($contact->user_id)
+
+                                    <form action="{{ route('admin.contactus.deleteUser',$contact->id) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button
+                                            type="submit">
+                                            X
+                                        </button>
+                                    </form>
+                                @else
                                     <form action="{{ route('admin.contactus.createUser',$contact->id) }}" method="post">
                                         @csrf
                                         <button type="submit" class="btn btn-sm btn-primary">Создать аккаунт</button>
                                     </form>
-                                @else
-                                    <span style="color: #0E9A00">✅ Аккаунт создан</span>
                                 @endif
                             </td>
                             <td>
@@ -66,6 +74,7 @@
                                         type="submit">удалить
                                     </button>
                                 </form>
+                            </td>
                         </tr>
                             @endforeach
                             </tbody>

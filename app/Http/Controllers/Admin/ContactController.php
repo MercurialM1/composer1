@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\AccountCreatedMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -42,8 +43,11 @@ class ContactController extends Controller
       return redirect()->route('contact')->with('success', 'Message sent successfully');
     }
     public function destroy(string $id)
-    {
-        $contact = Contact::findOrFail($id);
+    {   $contact = Contact::findOrFail($id);
+        if($contact->user_id) {
+            $user = $contact->user;
+            $user->delete();
+        }
         $contact->delete();
         return redirect()->route('admin.contactus.index');
     }
@@ -62,11 +66,26 @@ class ContactController extends Controller
             $contact->user_id = $user->id;
             $contact->status = 'approved';
             $contact->save();
+            //отправка письма 2.0 теперь отправляет шаблон с данными
+            Mail::to($contact->email)->send(new AccountCreatedMail($contact->name,$contact->email, $password));
 
-            Mail::raw("Логин: {$contact->email}, пароль: {$password}", function ($message) use ($contact) {//отправка письма
-                $message->to($contact->email)->subject('Тема');
-            });
             return redirect()->route('admin.contactus.index')->with('success', 'Аккаунт создан');
         }
+    }
+
+    public function deleteUser(string $id)
+    {//поиск по id и  удаление пользователя
+        $contact = Contact::findOrFail($id);
+        if ($contact->user_id) {
+            $user = User::find($contact->user_id);
+            if ($user) {
+                $user->delete();
+            }//обновление статуса и удаление id
+            $contact->user_id = null;
+            $contact->status = 'new';
+            $contact->save();
+            return redirect()->route('admin.contactus.index')->with('success','Аккаунт удалён');
+        }
+        return redirect()->route('admin.contactus.index')->with('success','Заявка удалена');
     }
 }

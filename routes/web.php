@@ -15,21 +15,17 @@ use App\Http\Controllers\Admin\sliderControl;
 
 //сортировка и что бы видел $slider
 Route::get('/', function () {
-    $sliders=slider::where('Active',true);
-    $sliders=$sliders->orderBy('sort','ASC');
-    $sliders=$sliders->get();
-    $photos=Photo::where('is_active',true);
-    $photos=$photos->orderBy('sort','ASC');
-    $photos=$photos->get();
-    $categories=Category::all();
-    $categories=$categories->sortBy('sort');
+    $sliders = slider::where('Active',true);
+    $sliders = $sliders->orderBy('sort','ASC');
+    $sliders = $sliders->get();
+    $photos = Photo::where('is_active',true);
+    $photos = $photos->orderBy('sort','ASC');
+    $photos = $photos->get();
+    $categories = Category::all();
+    $categories = $categories->sortBy('sort');
 //    $categories=$categories->get();
     return view('index-all',compact('sliders','photos','categories'));
 });
-
-//Route::get('/',function (){
-//    return view('index-all');
-//})->name('index');
 
 route::get('/blog-post', function () {
     return view('pages.blog-post');
@@ -113,30 +109,6 @@ Route::get('/onepage', function () {
 })->name('onepage');
 
 
-Route::redirect('/1','/das');
-
-use App\Http\Middleware\EnsureTokenIsValid;
-
-Route::get('/profile', function () {
-    // ...
-})->middleware(EnsureTokenIsValid::class);
-
-
-Route::get('/users/{id}', function ($id) {
-    return "Пользователь: " . $id;
-});
-
-Route::get('/users/{userId}/posts/{postId}/he/{heId}', function ($userId, $postId, $heId) {
-    return "Пользователь: $userId, пост: $postId,Он: $heId,";
-})->where("id", "[0-9]+");
-
-Route::get('/user/profile', function () {
-})->name('profile');
-
-//Route::get('/', function () {
-//    return view('welcome');
-//});
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -149,8 +121,8 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
 });
-
-
-
+Route::middleware('auth')->group(function () {
+    Route::get('/cabinet', [\App\Http\Controllers\ClientController::class, 'index'])->name('client.dashboard');
+});
 require __DIR__.'/auth.php';
 require __DIR__.'/admin.php';
