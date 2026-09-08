@@ -84,8 +84,8 @@ class ContactController extends Controller
             $contact->user_id = null;
             $contact->status = 'new';
             $contact->save();
-            return redirect()->route('admin.contactus.index')->with('success','Аккаунт удалён');
+            return redirect()->route('admin.contactus.index');
         }
-        return redirect()->route('admin.contactus.index')->with('success','Заявка удалена');
+        return redirect()->route('admin.contactus.index');
     }
 }

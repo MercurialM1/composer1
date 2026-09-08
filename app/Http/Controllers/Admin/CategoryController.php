@@ -17,7 +17,6 @@ class CategoryController extends Controller
        $categories = Category::all(); //spisok epta
         return view('admin.gallery.category.index', compact('categories'));
     }
-
     /**
      * Show the form for creating a new resource.
      */
@@ -41,7 +40,7 @@ class CategoryController extends Controller
             'sort' => $request->sort,
             'is_active' => $request->is_active,
 
-        ]);//
+        ]);
         return redirect()->route('admin.category.index');
 
     }

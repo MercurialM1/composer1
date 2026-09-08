@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ProductCategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Http\Controllers\Admin\sliderControl;
@@ -28,6 +29,14 @@ Route::prefix('admin')
             'create' => 'photo.create',
             'edit' => 'photo.edit',
         ]);
+
+        Route::resource('productcategory',ProductCategoryController::class)->names([
+            'index' => 'productcategory.index',
+            'create' => 'productcategory.create',
+            'edit' => 'productcategory.edit',
+        ]);
+
+
         //потом вернусь сюда
         Route::get('/contactus', [ContactController::class, 'index'])->name('contactus.index');
 
