@@ -107,6 +107,12 @@
                     <li class="{{ request()->routeIs('admin.productcategory.create') ? 'active' : '' }}">
                         <a href="{{route('admin.productcategory.create')}}">Создание категории</a>
                     </li>
+                    <li class="{{ request()->routeIs('admin.product.create') ? 'active' : '' }}">
+                        <a href="{{route('admin.product.create')}}">Создание товара</a>
+                    </li>
+                    <li class="{{ request()->routeIs('admin.product.index') ? 'active' : '' }}">
+                        <a href="{{route('admin.product.index')}}">Все товары</a>
+                    </li>
                 </ul>
 
                 </ul>

@@ -1,11 +1,14 @@
 <?php
 
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PageController;
 use App\Models\Category;
 use App\Models\Photo;
 use App\Models\slider;
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware;
 use App\Models\User;
@@ -121,8 +124,13 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
 });
-Route::middleware('auth')->group(function () {
-    Route::get('/cabinet', [\App\Http\Controllers\ClientController::class, 'index'])->name('client.dashboard');
+Route::middleware('auth')->prefix('cabinet')->as('cabinet.')->group(function () {
+Route::resource('cart', CartController::class)->only(['index', 'store', 'destroy','update']);
+Route::get('shop', [ClientController::class, 'shop'])->name('shop');
+Route::post('add', [CartController::class, 'add'])->name('cart.add');
 });
+
+
+Route::get('/cabinet',[ClientController::class,'index'])->middleware(['auth'])->name('cabinet');
 require __DIR__.'/auth.php';
 require __DIR__.'/admin.php';

@@ -35,15 +35,6 @@
                 <!--/.cbp-item -->
                 <!--/.cbp-item -->
             </div>
-            <!--/.cbp -->
-            <div class="divide30"></div>
-            <div class="text-center">
-                <div id="loadMore-container" class=""><a href="ajax/loadmore.html"
-                                                         class="cbp-l-loadMore-link btn btn-border dark"> <span
-                            class="cbp-l-loadMore-defaultText">LOAD MORE</span> <span
-                            class="cbp-l-loadMore-loadingText">LOADING...</span> <span
-                            class="cbp-l-loadMore-noMoreLoading">NO MORE WORKS</span> </a></div>
-            </div>
             <!--/.text-center -->
         </div>
         <!--/.cbp-panel -->

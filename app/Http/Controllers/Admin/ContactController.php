@@ -72,7 +72,6 @@ class ContactController extends Controller
             return redirect()->route('admin.contactus.index')->with('success', 'Аккаунт создан');
         }
     }
-
     public function deleteUser(string $id)
     {//поиск по id и  удаление пользователя
         $contact = Contact::findOrFail($id);

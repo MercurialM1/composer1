@@ -24,11 +24,11 @@
     </div>
 </div>
 
-@include('components.nonUnique.header')
+@include('client.indexcomponents.header')
 
 @yield('content')
 
-@include('components.nonUnique.footer')
+@include('client.indexcomponents.footer')
 <!--/.body-wrapper -->
 <script src="{{ asset("/style/js/jquery.min.js") }}"></script>
 <script src="{{ asset('/style/js/bootstrap.min.js') }}"></script>

@@ -1,4 +1,4 @@
 @extends('admin.index')
 @section('content')
-    @include('admin.gallery.category.components.datatable',['categories' => $categories])
+    @include('admin.product.product.components.datatable',['products' => $products])
 @endsection

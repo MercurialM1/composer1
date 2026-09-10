@@ -14,44 +14,62 @@
                 </nav>
             </div>
             <!-- /BREADCRUMB -->
-
-
-
-
             <div class="col-lg-12 col-12 layout-spacing">
                 <div class="statbox widget box box-shadow">
                     <div class="widget-header">
                         <div class="row">
                             <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                                <h4>Создание категории</h4>
+                                <h4>Создание товара</h4>
                             </div>
                         </div>
                     </div>
                     <div class="widget-content widget-content-area">
-
-{{--если слайдер сущетвует то его марштрут с id если не то создать--}}
-                        <form method="POST" action="{{ isset($category) ? route('admin.category.update', $category->id) : route('admin.category.store') }}" enctype="multipart/form-data">
-                            @csrf {{-- какая то защита--}}
-                            @if(isset($category))
-                                @method('PUT')
-                            @endif
+                        <form method="POST" action="{{ route('admin.product.store') }}" enctype="multipart/form-data">
+                            @csrf
+                            @foreach($categories as $category) {{--вставить категорию по id--}}
+                            <label>
+                                {{ $category->name }}
+                                <input type="checkbox" name="productcategories[]" value="{{ $category->id }}">
+                            </label>
+                            @endforeach
                             <div class="form-group mb-4">
                                 <label for="exampleFormControlInput2">Название</label>
-                                <input type="text" name="name" value="{{ $category->name ?? '' }}"> {{--если есть то показать,если нет тогда ничего--}}
+                                <input type="text" name="name" value="{{old('name')}}">
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="exampleFormControlTextarea1">Описание</label>
+                                <textarea name="description">{{old('description')}}</textarea>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="exampleFormControlInput2">Цена</label>
+                                <input type="number" name="price" value="{{old('price')}}">
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="exampleFormControlInput2">Количество</label>
+                                <input type="number" name="count" value="{{old('count')}}">
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="exampleFormControlInput2">Доставка</label>
+                                <input type="number" name="delivery" value="{{old('delivery')}}">
                             </div>
 
-                                <div>
-                                    <label>Активно</label>
-                                    <input type="hidden" name="is_active" value="0">
-                                    <input type="checkbox" name="is_active" value="1">
-                                </div>
+                            <div class="form-group mb-4 mt-3">
+                                <label for="exampleFormControlFile1">Фото</label>
+                                <input type="file" name="image" class="form-control-file" id="exampleFormControlFile1">
+                            </div>
+
+                            <div>
+                                <label>Активно</label>
+                                <input type="hidden" name="is_active" value="0">
+                                <input type="checkbox" name="is_active" value="1">
+                            </div>
                             <div>
                                 <label>Порядок</label>
-                                <input type="number" name="sort" value="{{ old('sort', $category->sort ?? 0) }}">
+                                <input type="number" name="sort" value="{{ old('sort', 0) }}">
                             </div>
-                                <input type="submit"  class="mt-4 mb-4 btn btn-primary">
+                            <input type="submit"  class="mt-4 mb-4 btn btn-primary">
 
-                            </form>
+                        </form>
 
                     </div>
                 </div>

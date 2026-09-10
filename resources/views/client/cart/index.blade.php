@@ -1,4 +1,4 @@
 @extends('client.index')
 @section('content')
-    @include('client.shop.components.store')
+    @include('client.cart.components.cart')
 @endsection

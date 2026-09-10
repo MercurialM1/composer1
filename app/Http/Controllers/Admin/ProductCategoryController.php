@@ -16,7 +16,6 @@ class ProductCategoryController extends Controller
         $categories = CategoryShop::all();
         return view('admin.product.category.index', compact('categories'));
     }
-
     /**
      * Show the form for creating a new resource.
      */
@@ -24,7 +23,6 @@ class ProductCategoryController extends Controller
     {
         return view('admin.product.category.create');
     }
-
     /**
      * Store a newly created resource in storage.
      */

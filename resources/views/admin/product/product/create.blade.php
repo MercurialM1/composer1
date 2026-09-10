@@ -1,4 +1,4 @@
 @extends('admin.index')
 @section('content')
-    @include('admin.gallery.category.components.fileUpload')
+    @include('admin.product.product.components.fileUpload')
 @endsection

@@ -6,7 +6,7 @@
             <div class="widget-header">
                 <div class="row">
                     <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                        <h4>Все категории</h4>
+                        <h4>Все товары</h4>
                     </div>
                 </div>
             </div>
@@ -17,6 +17,12 @@
                 <thead>
                 <tr>
                     <th>Название</th>
+                    <th>Изоображение</th>
+                    <th>Описание</th>
+                    <th>Категория</th>
+                    <th>Цена</th>
+                    <th>Количество</th>
+                    <th>Доставка</th>
                     <th>Порядок</th>
                     <th>Активно</th>
                     <th>Редактирование</th>
@@ -25,18 +31,39 @@
                 </thead>
                 <tbody>
 
-                @foreach($categories as $category)
+                @foreach($products as $product)
                 <tr>
                     <td>
-                        {{$category->name}}
-                    </td>
-
-
-                    <td>
-                        {{$category->sort}}
+                        {{$product->name}}
                     </td>
                     <td>
-                        @if ($category->is_active)
+                    @if($product->image)
+                        <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" style="max-height: 50px; object-fit: cover;">
+                    @else
+                        <span class="text-muted">Нет фото</span>
+                     @endif
+                    </td>
+                    <td>
+                        {{$product->description}}
+                    </td>
+                    <td>
+                        {{$product->categories->pluck('name')->join(', ')}} {{-- взять имя из категории и вставить сюда --}}
+                    </td>
+                    <td>
+                        {{$product->price}}
+                    </td>
+                    <td>
+                        {{$product->count}}
+                    </td>
+                    <td>
+                        {{$product->delivery}}
+                    </td>
+
+                    <td>
+                        {{$product->sort}}
+                    </td>
+                    <td>
+                        @if ($product->is_active)
                             ✅
                         @else
                             ❌
@@ -44,11 +71,11 @@
                     </td>
 
                     <td>
-                        <a href="{{route('admin.category.edit',$category->id)}}">ИЗМЕНИТЬ</a>
+                        <a href="{{route('admin.product.edit',$product->id)}}">ИЗМЕНИТЬ</a>
                     </td>
                     <td>
                         <form
-                            action ="{{route('admin.category.destroy',$category->id)}}" method="POST">
+                            action ="{{route('admin.product.destroy',$product->id)}}" method="POST">
                         @method('DELETE')
                         <button
                             type="submit">удалить

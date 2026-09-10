@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ProductCategoryController;
+use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Http\Controllers\Admin\sliderControl;
@@ -11,7 +12,6 @@ Route::prefix('admin')
     ->middleware("auth")
     ->name('admin.')
     ->group(function () {
-//передаёт ресурсы из контроллера
         Route::resource('slider', \App\Http\Controllers\Admin\sliderControl::class)->names([
             'index' => 'slider.index',
             'create' => 'slider.create',
@@ -34,8 +34,14 @@ Route::prefix('admin')
             'index' => 'productcategory.index',
             'create' => 'productcategory.create',
             'edit' => 'productcategory.edit',
+
         ]);
 
+        Route::resource('product', ProductController::class)->names([
+            'index' => 'product.index',
+            'create' => 'product.create',
+            'edit' => 'product.edit',
+        ]);
 
         //потом вернусь сюда
         Route::get('/contactus', [ContactController::class, 'index'])->name('contactus.index');
