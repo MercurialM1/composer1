@@ -27,7 +27,7 @@
                                     {{$item->product->name}}
                                 </h4>
                                 <p style="margin: 0; font-size: 0.9em; color: #666;">{{$item->product->description}}.</p>
-                                <a href="blog-post.blade.php" class="more link-effect" style="font-size: 0.85em;">Read More »</a>
+                                <a href="#" class="more link-effect" style="font-size: 0.85em;">Read More »</a>
                             </td>
                             <td>
                                 <div class="meta">
@@ -42,19 +42,21 @@
                                 </span>
                             </td>
                             <td class="text-nowrap font-weight-bold">
-                                <form action ="{{route('cabinet.cart.update',$item->id)}}" method="POST">
+                                <form style="display:inline-block" action ="{{route('cabinet.cart.update',$item->id)}}" method="POST">
                                     @csrf
                                     @method('PUT')
                                     <input type="hidden" name="quantity" value="{{$item->quantity + 1}}"/>
                                     <button type="submit">+</button>
                                 </form>
-                                    <a class="link-effect">{{$item->quantity}}шт</a>
-                                <form action ="{{route('cabinet.cart.update',$item->id)}}" method="POST">
+                                <a class="link-effect">{{$item->quantity}}шт</a>
+                                @if($item->quantity > 1)
+                                <form style="display:inline-block" action ="{{route('cabinet.cart.update',$item->id)}}" method="POST">
                                     @csrf
                                     @method('PUT')
                                     <input type="hidden" name="quantity" value="{{$item->quantity - 1}}">
                                     <button type="submit">-</button>
                                 </form>
+                                @endif
 
                             </td>
                             <td class="text-nowrap font-weight-bold">
@@ -76,17 +78,15 @@
                     </tbody>
                 </table>
                 <div class="text-right" style="margin-top: 20px; font-size: 1.2em; font-weight: bold;">
-{{--                    Всего товаров: {{ $cartItems->sum(fn($item)=> $item) }} <br>--}}
+                    Все товары: {{ $cartItems->sum(fn($item) => $item->quantity) }} <br>
                     Итого: {{ $cartItems->sum(fn($item) => $item->product->price * $item->quantity) }} Руб
-                </div>
-            </div>
-            <div class="pagination">
-                <ul>
-                    <li><a href="#" class="btn">Prev</a></li>
-                    <li class="active"><a href="#" class="btn">1</a></li>
 
-                </ul>
+
+
+                    <li><a href="#" class="btn">Prev</a></li>
+
             </div>
         </div>
     </div>
+</div>
 </div>

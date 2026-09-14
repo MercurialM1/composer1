@@ -13,8 +13,8 @@ class ClientController extends Controller
         return view('client.dashboard',compact('categories', 'products'));
     }
     public function shop(){
-        $categories = CategoryShop::where('is_active', true)->get();//берёт активные
-        $products = Product::with('categories')->where('is_active', true)->get();
+        $categories = CategoryShop::all();//берёт просто всё
+        $products = Product::with('categories')->get();
         return view('client.shop.index',compact('categories', 'products'));
     }
 //    public function shop(){
