@@ -19,8 +19,7 @@
                 <div class="cbp-item
                 @foreach($photo->categories as $category)
                 cat-{{ $category->id }} {{--cat Css хуйня какаято как и сверху--}}
-                @endforeach"><a href="#"
-                                                      class="cbp-caption cbp-singlePageInline">
+                @endforeach"><a href="#" class="cbp-caption cbp-singlePageInline">
                         <div class="cbp-caption-defaultWrap"><img src="{{asset('storage/'.$photo->path)}}" width="100" alt=""/></div>
                         <div class="cbp-caption-activeWrap">
                             <div class="cbp-l-caption-alignCenter">

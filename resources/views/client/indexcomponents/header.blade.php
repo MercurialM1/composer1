@@ -10,10 +10,9 @@
         <!-- /.navbar-header -->
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="current dropdown"><a href="#" class="dropdown-toggle js-activated" data-toggle="dropdown">Главная<span class="caret"></span></a>
-                        <li><a href="{{ url('/') }}">Home Layout 1</a></li>
-
-
+                        <li><a href="{{ url('cabinet') }}">Главная</a></li>
+                        <li><a href="{{ url('cabinet/cart') }}">Корзина</a></li>
+                        <li><a href="{{ url('cabinet/shop') }}">Товары</a></li>
             </ul>
             <!-- /.navbar-nav -->
         </div>

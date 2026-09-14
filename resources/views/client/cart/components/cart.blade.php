@@ -19,14 +19,12 @@
                         <tr>
                             <td>
                                 <figure class="main" style="margin: 0;">
-                                    <a href="blog-post.blade.php">
                                         <img src="{{ asset('storage/'.$item->product->image) }}" alt="{{$item->product->name}}" class="img-fluid" style="max-width: 100px; height: auto;"/>
-                                    </a>
                                 </figure>
                             </td>
                             <td>
                                 <h4 class="post-title" style="margin-bottom: 5px;">
-                                    <a href="blog-post.blade.php">{{$item->product->name}}</a>
+                                    {{$item->product->name}}
                                 </h4>
                                 <p style="margin: 0; font-size: 0.9em; color: #666;">{{$item->product->description}}.</p>
                                 <a href="blog-post.blade.php" class="more link-effect" style="font-size: 0.85em;">Read More »</a>
@@ -34,7 +32,7 @@
                             <td>
                                 <div class="meta">
                                     <span class="category">
-                                        <a href="#" class="link-effect">{{$item->product->categories->pluck('name')->join(', ')}}</a>,{{--все имена категорий через запятую--}}
+                                        <a href="#" class="link-effect">{{$item->product->categories->pluck('name')->join(', ')}}</a>{{--все имена категорий через запятую--}}
                                     </span>
                                 </div>
                             </td>
@@ -44,9 +42,20 @@
                                 </span>
                             </td>
                             <td class="text-nowrap font-weight-bold">
-                                <span class="comments">
-                                    <a href="#" class="link-effect">{{$item->quantity}}шт</a>
-                                </span>
+                                <form action ="{{route('cabinet.cart.update',$item->id)}}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <input type="hidden" name="quantity" value="{{$item->quantity + 1}}"/>
+                                    <button type="submit">+</button>
+                                </form>
+                                    <a class="link-effect">{{$item->quantity}}шт</a>
+                                <form action ="{{route('cabinet.cart.update',$item->id)}}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <input type="hidden" name="quantity" value="{{$item->quantity - 1}}">
+                                    <button type="submit">-</button>
+                                </form>
+
                             </td>
                             <td class="text-nowrap font-weight-bold">
                                 <span class="comments">
@@ -67,6 +76,7 @@
                     </tbody>
                 </table>
                 <div class="text-right" style="margin-top: 20px; font-size: 1.2em; font-weight: bold;">
+{{--                    Всего товаров: {{ $cartItems->sum(fn($item)=> $item) }} <br>--}}
                     Итого: {{ $cartItems->sum(fn($item) => $item->product->price * $item->quantity) }} Руб
                 </div>
             </div>

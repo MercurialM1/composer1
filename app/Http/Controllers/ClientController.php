@@ -12,16 +12,17 @@ class ClientController extends Controller
         $products = Product::with('categories')->where('is_active', true)->get();
         return view('client.dashboard',compact('categories', 'products'));
     }
-
+    public function shop(){
+        $categories = CategoryShop::where('is_active', true)->get();//берёт активные
+        $products = Product::with('categories')->where('is_active', true)->get();
+        return view('client.shop.index',compact('categories', 'products'));
+    }
 //    public function shop(){
 //        $categories = CategoryShop::where('is_active', true)->get();//берёт активные
 //        $products = Product::with('categories')->where('is_active', true)->get();//ууууу жадная загрузка типо сначава все связи товара по id потом категории с этим id
 //        return view('client.shop.components.store', compact('categories', 'products'));
 //    }
 //
-
-
-
 }
 
 

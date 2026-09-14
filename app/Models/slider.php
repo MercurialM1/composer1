@@ -18,6 +18,7 @@ class slider extends Model // список с таблицами
         'Active',
         'sort',
     ];
+
     public function order() //sortirovka (ona ne rabotaet)
     {
         return $this->hasOne(Slider::class, 'id', 'id');

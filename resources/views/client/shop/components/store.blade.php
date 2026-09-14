@@ -27,10 +27,9 @@
                             </div>
                             </div>
                         </div>
-                </a> </div>
-        </div>        <!--/.cbp-caption-activeWrap -->
+                </a> </div><!--/.cbp-caption-activeWrap -->
                 @endforeach
-
+        </div>
         </div>
         <!--/.cbp-panel -->
     </div>

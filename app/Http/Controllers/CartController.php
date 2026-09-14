@@ -12,7 +12,7 @@ class CartController extends Controller
 {
     public function index(){
         $user = Auth::id();
-        $cartItems = CartItem::with('product')->where('user_id',$user)->get();
+        $cartItems = CartItem::with('product')->where('user_id',$user)->orderBy('id')->get();
         return view('client.cart.index',compact('cartItems'));
     }
     public function destroy(Request $request, $id){
@@ -30,7 +30,7 @@ class CartController extends Controller
         if($existingItem){//если запись есть то увеличить колво на 1 / если нет то создать запись
         $existingItem->quantity += 1;
         $existingItem->save();
-        return redirect()->back();}//просто редирект как и снизу
+        return redirect()->back();}//просто редирект
         else
         {
         $cartItem = CartItem::create([
@@ -42,6 +42,12 @@ class CartController extends Controller
         return redirect()->back();
 
     }
+    public function update(Request $request, $id){ //получить запись,получить значение,обноввить ,редирект
+        $cartItem = CartItem::findOrFail($id);
+        $newQuantity = $request->quantity;
+        $cartItem->quantity = $newQuantity;
+        $cartItem->save();
+        return redirect()->back();
 
-
+    }
 }
