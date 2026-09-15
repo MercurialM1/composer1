@@ -81,9 +81,7 @@
                     Все товары: {{ $cartItems->sum(fn($item) => $item->quantity) }} <br>
                     Итого: {{ $cartItems->sum(fn($item) => $item->product->price * $item->quantity) }} Руб
 
-
-
-                    <li><a href="#" class="btn">Prev</a></li>
+                    <li><a href="{{ route('cabinet.cart.checkout') }}" class="btn">Купить</a></li>
 
             </div>
         </div>

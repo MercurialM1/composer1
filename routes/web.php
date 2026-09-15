@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PageController;
@@ -128,6 +129,8 @@ Route::middleware('auth')->prefix('cabinet')->as('cabinet.')->group(function () 
 Route::resource('cart', CartController::class)->only(['index', 'store', 'destroy','update']);
 Route::get('shop', [ClientController::class, 'shop'])->name('shop');
 Route::post('add', [CartController::class, 'add'])->name('cart.add');
+Route::get('checkout', [OrderController::class, 'checkout'])->name('cart.checkout');
+Route::post('order', [OrderController::class, 'order'])->name('cart.order');
 });
 
 
