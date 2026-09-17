@@ -27,45 +27,45 @@
                         <form method="POST" action="{{ route('admin.product.store') }}" enctype="multipart/form-data">
                             @csrf
                             @foreach($categories as $category) {{--вставить категорию по id--}}
-                            <label>
+                            <label class="form-check-label" for="form-check-default">
                                 {{ $category->name }}
-                                <input type="checkbox" name="productcategories[]" value="{{ $category->id }}">
+                                <input class="form-check-input" type="checkbox" id="form-check-default"  name="productcategories[]" value="{{ $category->id }}">
                             </label>
                             @endforeach
                             <div class="form-group mb-4">
                                 <label for="exampleFormControlInput2">Название</label>
-                                <input type="text" name="name" value="{{old('name')}}">
+                                <input class="form-control"  type="text" name="name" placeholder="Название" aria-describedby="basic-addon1" value="{{old('name')}}">
                             </div>
                             <div class="form-group mb-4">
-                                <label for="exampleFormControlTextarea1">Описание</label>
-                                <textarea name="description">{{old('description')}}</textarea>
+                                <label for="exampleFormControlInput2">Описание</label>
+                                <textarea class="form-control" name="description" aria-label="With textarea">{{old('description')}}</textarea>
                             </div>
                             <div class="form-group mb-4">
                                 <label for="exampleFormControlInput2">Цена</label>
-                                <input type="number" name="price" value="{{old('price')}}">
+                                <input class="form-control"  type="number" name="price" placeholder="Цена" aria-describedby="basic-addon1" value="{{old('price')}}">
                             </div>
                             <div class="form-group mb-4">
                                 <label for="exampleFormControlInput2">Количество</label>
-                                <input type="number" name="count" value="{{old('count')}}">
+                                <input class="form-control"   type="number" name="count" placeholder="Количество" aria-describedby="basic-addon1" value="{{old('count')}}">
                             </div>
                             <div class="form-group mb-4">
                                 <label for="exampleFormControlInput2">Доставка</label>
-                                <input type="number" name="delivery" value="{{old('delivery')}}">
+                                <input  class="form-control"    type="number" name="delivery" aria-describedby="basic-addon1" value="{{old('delivery')}}">
                             </div>
 
-                            <div class="form-group mb-4 mt-3">
+                            <div class="form-group mb-4 ">
                                 <label for="exampleFormControlFile1">Фото</label>
-                                <input type="file" name="image" class="form-control-file" id="exampleFormControlFile1">
+                                <input  type="file" name="image" class="btn btn-secondary  mb-2 me-4" id="exampleFormControlFile1">
                             </div>
 
-                            <div>
-                                <label>Активно</label>
+                            <div class="form-check form-check-primary form-check-inline">
                                 <input type="hidden" name="is_active" value="0">
-                                <input type="checkbox" name="is_active" value="1">
+                                <label class="form-check-label" for="form-check-default">Активно</label>
+                                <input class="form-check-input" type="checkbox" id="form-check-default" name="is_active" value="1">
                             </div>
-                            <div>
-                                <label>Порядок</label>
-                                <input type="number" name="sort" value="{{ old('sort', 0) }}">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Порядок</span>
+                                <input type="number" name="sort" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value="{{ old('sort', 0) }}">
                             </div>
                             <input type="submit"  class="mt-4 mb-4 btn btn-primary">
 

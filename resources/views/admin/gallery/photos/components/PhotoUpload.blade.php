@@ -33,8 +33,8 @@
 @csrf
 
 @foreach($categories as $category)
-<label>
-    <input type="checkbox" name='categories[]' value="{{$category->id}}"
+<label class="form-check-label" for="form-check-default">
+    <input class="form-check-input" type="checkbox" id="form-check-default"  name='categories[]' value="{{$category->id}}"
         @if($photo->categories->contains($category)) {{--проверка чекбоксов--}}
         checked
     @endif
@@ -48,9 +48,9 @@
     <label>Имя</label>
     <input name="title" value="{{$photo->title}}">
                     </div>
-                    <div>
-                        <label>Описание</label>
-<textarea name="description">{{$photo->description}}</textarea>
+                        <div class="form-group mb-4">
+                            <label for="exampleFormControlInput2">Описание</label>
+                            <textarea class="form-control" name="description" aria-label="With textarea">{{$photo->description}}</textarea>
                     </div>
                         <div>
     <label>Путь</label>

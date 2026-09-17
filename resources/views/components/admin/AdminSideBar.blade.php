@@ -5,8 +5,15 @@
         <div class="navbar-nav theme-brand flex-row  text-center">
             <div class="nav-logo">
                 <div class="nav-item theme-logo">
-                    <a href="{{ route ('admin.slider.index')}}">
-                        <img src="{{asset('src/assets/img/logo.svg')}}" class="navbar-logo" alt="logo">
+                    <a href="{{ route('admin.slider.index') }}" class="navbar-logo-link" style="
+    display: inline-block;
+    width: 45px;
+    height: 45px;
+    background-image: url('{{ asset('src/assets/img/logo.svg') }}');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+                       ">
                     </a>
                 </div>
                 <div class="nav-item theme-text">
@@ -55,17 +62,17 @@
                     </div>
                 </a>
                 <ul class="collapse submenu list-unstyled {{ request()->routeIs(['admin.category.*','admin.photo.*']) ? 'show' : '' }}" id="gallery-menu" data-bs-parent="#accordionExample">
-                    <li class="{{ request()->routeIs('category.create') ? 'active' : '' }}">
+                    <li class="{{ request()->routeIs('admin.category.create') ? 'active' : '' }}">
                         <a href="{{route('admin.category.create')}}"> Создание категори </a>
                     </li>
 
-                    <li class="{{ request()->routeIs('category.index') ? 'active' : '' }}">
+                    <li class="{{ request()->routeIs('admin.category.index') ? 'active' : '' }}">
                         <a href="{{route('admin.category.index')}}">Все категории</a>
                     </li>
-                    <li class="{{ request()->routeIs('photo.create') ? 'active' : '' }}">
+                    <li class="{{ request()->routeIs('admin.photo.create') ? 'active' : '' }}">
                         <a href="{{route('admin.photo.create')}}">Фото</a>
                     </li>
-                    <li class="{{ request()->routeIs('photo.index') ? 'active' : '' }}">
+                    <li class="{{ request()->routeIs('admin.photo.index') ? 'active' : '' }}">
                         <a href="{{route('admin.photo.index')}}">Все фото</a>
                     </li>
                 </ul>
@@ -82,17 +89,17 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
                     </div>
                 </a>{{--что бы было открыто когда она выбрана --}}
-                <ul class="collapse submenu list-unstyled {{ request()->routeIs('contactus.*') ? 'show' : '' }}" id="contact-menu" data-bs-parent="#accordionExample">
+                <ul class="collapse submenu list-unstyled {{ request()->routeIs('admin.contactus.*') ? 'show' : '' }}" id="contact-menu" data-bs-parent="#accordionExample">
                     <li class="{{ request()->routeIs('admin.contactus.index') ? 'active' : '' }}">
                         <a href="{{route('admin.contactus.index')}}">Сообщения</a>
                     </li>
                 </ul>
             </li>
 
-            <li class="menu {{ request()->routeIs('admin.productcategory.index') ? 'active' : '' }}"> {{-- что бы не светилась всегда --}}
+            <li class="menu {{ request()->routeIs('admin.productcategory.*','admin.product.*') ? 'active' : '' }}"> {{-- что бы не светилась всегда --}}
                 <a href="#productcategory-menu" data-bs-toggle="collapse" aria-expanded="true" class="dropdown-toggle">
                     <div class="">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline>
                         <span>Магазин</span>
                     </div>
                     <div>
@@ -100,7 +107,7 @@
                     </div>
                 </a>
                 {{--что бы было открыто когда она выбрана --}}
-                <ul class="collapse submenu list-unstyled {{ request()->routeIs('admin.productcategory.index') ? 'show' : '' }}" id="productcategory-menu" data-bs-parent="#accordionExample">
+                <ul class="collapse submenu list-unstyled {{ request()->routeIs('admin.productcategory.*','admin.product.*') ? 'show' : '' }}" id="productcategory-menu" data-bs-parent="#accordionExample">
                     <li class="{{ request()->routeIs('admin.productcategory.index') ? 'active' : '' }}">
                         <a href="{{route('admin.productcategory.index')}}">Категории магазина</a>
                     </li>
@@ -114,8 +121,25 @@
                         <a href="{{route('admin.product.index')}}">Все товары</a>
                     </li>
                 </ul>
-
+            <li class="menu {{ request()->routeIs('admin.order.*') ? 'active' : '' }}"> {{-- что бы не светилась всегда --}}
+                <a href="#order-menu" data-bs-toggle="collapse" aria-expanded="true" class="dropdown-toggle">
+                    <div class="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                        <span>Заказы</span>
+                    </div>
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </div>
+                </a>{{--что бы было открыто когда она выбрана --}}
+                <ul class="collapse submenu list-unstyled {{ request()->routeIs('admin.order.*') ? 'show' : '' }}" id="order-menu" data-bs-parent="#accordionExample">
+                    <li class="{{ request()->routeIs('admin.order.index') ? 'active' : '' }}">
+                        <a href="{{route('admin.order.index')}}">Заказы</a>
+                    </li>
                 </ul>
+            </li>
+
+
+        </ul>
 
     </nav>
     <div class="overlay"></div>

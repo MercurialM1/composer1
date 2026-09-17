@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Order extends Model
 {
-    public $timestamps = false;
+//    public $timestamps = false;
     protected $fillable =[
         'user_id',
         'recipient_name',
@@ -16,7 +16,8 @@ class Order extends Model
         'address',
         'comment',
         'status',
-        'total_price'
+        'total_price',
+        'created_at',
     ];
 
     public function user(): BelongsTo

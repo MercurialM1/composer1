@@ -7,9 +7,21 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class OrderController extends Controller
 {
+    public function index():View{
+        $statuses = [
+            'new' => 'Новый',
+            'processing' => 'В обработке',
+            'completed' => 'Завершён',
+            'cancelled' => 'Отменён'
+        ];
+        $userId = Auth::id();
+        $orders = Order::with('items')->where('user_id',$userId)->latest()->get();
+        return view('client.orders.index',compact('orders','statuses'));
+    }
     public function checkout()
     {
         $userId = Auth::id();

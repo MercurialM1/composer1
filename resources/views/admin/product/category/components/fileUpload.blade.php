@@ -34,23 +34,28 @@
                             @if(isset($category))
                                 @method('PUT')
                             @endif
-                            <div class="form-group mb-4">
-                                <label for="exampleFormControlInput2">Название</label>
-                                <input type="text" name="name" value="{{ old('name',$category->name ?? '') }}">
+{{--                            <div class="form-group mb-4">--}}
+{{--                                <label for="exampleFormControlInput2">Название</label>--}}
+{{--                                <input type="text" name="name" value="{{ old('name',$category->name ?? '') }}">--}}
+{{--                            </div>--}}
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Название</span>
+                                <input type="text" class="form-control" placeholder="Введите название категории" aria-label="Username" aria-describedby="basic-addon1" value="{{ old('name',$category->name ?? '') }}">
                             </div>
 
-                                <div>
-                                    <label>Активно</label>
-                                    <input type="hidden" name="is_active" value="0">
-                                    <input type="checkbox" @checked( old('is_active', $category->is_active ?? false) ) name="is_active" value="1">
+                            <div class="form-check form-check-primary form-check-inline">
+                                <input type="hidden" name="is_active" value="0">
+                                    <label class="form-check-label" for="form-check-default">Активно</label>
+
+                                    <input class="form-check-input" type="checkbox" id="form-check-default" @checked( old('is_active', $category->is_active ?? false) ) name="is_active" value="1">
                                 </div>
-                            <div>
-                                <label>Порядок</label>
-                                <input type="number" name="sort" value="{{ old('sort', $category->sort ?? 0) }}">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Порядок</span>
+                                <input type="number" name="sort" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value="{{ old('sort', $category->sort ?? 0) }}">
                             </div>
                                 <input type="submit"  class="mt-4 mb-4 btn btn-primary">
-
                             </form>
+
 
                     </div>
                 </div>

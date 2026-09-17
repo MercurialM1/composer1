@@ -27,33 +27,33 @@
                     <form method="POST" action="{{ route('admin.photo.store') }}" enctype="multipart/form-data">
                           @csrf
                         @foreach($categories as $category) {{--вставить категорию по id--}}
-                            <label>
+                        <label class="form-check-label" for="form-check-default">
                                 {{ $category->name }}
-                                <input type="checkbox" name="categories[]" value="{{ $category->id }}">
+                            <input class="form-check-input" type="checkbox" id="form-check-default"  name="categories[]" value="{{ $category->id }}">
                             </label>
                         @endforeach
                         <div class="form-group mb-4">
                             <label for="exampleFormControlInput2">Заголовок</label>
-                            <input type="text" name="title" value="{{old('title')}}"> {{--сохраниение если не надо менять--}}
+                            <input class="form-control"  type="text" name="title" placeholder="Название" aria-describedby="basic-addon1" value="{{old('title')}}"> {{--сохраниение если не надо менять--}}
                         </div>
                         <div class="form-group mb-4">
-                            <label for="exampleFormControlTextarea1">Описание</label>
-                            <textarea name="description">{{old('description')}}</textarea> {{--тоже самое с описанием--}}
+                            <label for="exampleFormControlInput2">Описание</label>
+                            <<textarea class="form-control" name="description" aria-label="With textarea">{{old('description')}}</textarea> {{--тоже самое с описанием--}}
                         </div>
 
                         <div class="form-group mb-4 mt-3">
                             <label for="exampleFormControlFile1">Фото</label>
-                            <input type="file" name="path" class="form-control-file" id="exampleFormControlFile1">
+                            <input type="file" name="path" class="btn btn-secondary  mb-2 me-4" id="exampleFormControlFile1">
                         </div>
 
-                                <div>
-                                    <label>Активно</label>
-                                    <input type="hidden" name="is_active" value="0">
-                                    <input type="checkbox" name="is_active" value="1">
-                                </div>
-                            <div>
-                                <label>Порядок</label>
-                                <input type="number" name="sort" value="{{ old('sort', 0) }}">
+                        <div class="form-check form-check-primary form-check-inline">
+                            <input type="hidden" name="is_active" value="0">
+                            <label class="form-check-label" for="form-check-default">Активно</label>
+                            <input class="form-check-input" type="checkbox" id="form-check-default" name="is_active" value="1">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1">Порядок</span>
+                            <input type="number" name="sort" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value="{{ old('sort', 0) }}">
                             </div>
                                 <input type="submit"  class="mt-4 mb-4 btn btn-primary">
 

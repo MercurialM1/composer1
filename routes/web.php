@@ -131,6 +131,7 @@ Route::get('shop', [ClientController::class, 'shop'])->name('shop');
 Route::post('add', [CartController::class, 'add'])->name('cart.add');
 Route::get('checkout', [OrderController::class, 'checkout'])->name('cart.checkout');
 Route::post('order', [OrderController::class, 'order'])->name('cart.order');
+Route::get('index',[OrderController::class,'index'])->name('index');
 });
 
 

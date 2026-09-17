@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\ProductCategoryController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Http\Controllers\Admin\sliderControl;
@@ -29,6 +30,7 @@ Route::prefix('admin')
             'create' => 'photo.create',
             'edit' => 'photo.edit',
         ]);
+        Route::resource('order',\App\Http\Controllers\Admin\AdminOrderController::class)->only(['index','destroy', 'update','show']);
 
         Route::resource('productcategory',ProductCategoryController::class)->names([
             'index' => 'productcategory.index',
