@@ -13,6 +13,11 @@
                         <li><a href="{{ url('cabinet') }}">Главная</a></li>
                         <li><a href="{{ url('cabinet/cart') }}">Корзина</a></li>
                         <li><a href="{{ url('cabinet/shop') }}">Товары</a></li>
+                        <li><form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-link">Выйти</button>
+                            </form>
+                        </li>
             </ul>
             <!-- /.navbar-nav -->
         </div>

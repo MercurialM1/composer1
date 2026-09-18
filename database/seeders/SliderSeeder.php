@@ -16,14 +16,14 @@ class SliderSeeder extends Seeder
 
     public function run(): void
     {   slider::truncate();
-        $faker = \Faker\Factory::create();
-        $colors = ['FF5733', '33FF57', '3357FF', 'F3FF33', 'FF33F3'];
+        $faker = \Faker\Factory::create('ru_RU');
+        Storage::disk('public')->deleteDirectory('slider');
 
-        for ($i = 0; $i < 4; $i++) {
+        for ($i = 0; $i < 10; $i++) {
+            $colors = fake()->hexColor();
             $title = $faker->sentence();
             $svg = '<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="400">'
-                . '<rect width="100%" height="100%" fill="#' . $colors[$i] . '"/>'
-                . '<text x="50%" y="50%" fill="#FFFFFF" font-size="60" text-anchor="middle">' .$title . '</text>'
+                . '<rect width="100%" height="100%" fill="' . $colors . '"/>'
                 . '</svg>';
             $filePath = 'slider/' . $i . '.svg';
             Storage::disk('public')->put("slider/" . $i . ".svg", $svg);

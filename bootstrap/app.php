@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
             health: '/up',
         )
         ->withMiddleware(function (Middleware $middleware): void {
-        //
+$middleware->alias(['admin' => \App\Http\Middleware\AdminMiddleware::class]);
         })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(

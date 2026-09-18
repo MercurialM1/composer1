@@ -34,7 +34,7 @@
                 @foreach($products as $product)
                 <tr>
                     <td>
-                        {{$product->name}}
+                        <span class="text-muted" style="white-space: pre-line;">{{$product->name}}</span>
                     </td>
                     <td>
                     @if($product->image)
@@ -44,7 +44,7 @@
                      @endif
                     </td>
                     <td>
-                        {{$product->description}}
+                        <span class="text-muted" style="white-space: pre-line;">{{$product->description}}</span>
                     </td>
                     <td>
                         {{$product->categories->pluck('name')->join(', ')}} {{-- взять имя из категории и вставить сюда --}}

@@ -48,13 +48,13 @@
                     </td>
 
                     <td>
-                        {{$slider->Zagalovok}}
+                        <span class="text-muted" style="white-space: pre-line;">{{$slider->Zagalovok}}</span>
                     </td>
 
                     <td>
                         @if($slider->Description)
 
-                            <span class="text-muted">{{$slider->Description}}</span>
+                            <span class="text-muted" style="white-space: pre-line;">{{$slider->Description}}</span>
 
                         @endif
                     </td>

@@ -10,7 +10,7 @@ use App\Http\Controllers\Admin\categoryController;
 use App\Http\Controllers\Admin\ContactController;
 
 Route::prefix('admin')
-    ->middleware("auth")
+    ->middleware(["admin",'auth'])
     ->name('admin.')
     ->group(function () {
         Route::resource('slider', \App\Http\Controllers\Admin\sliderControl::class)->names([

@@ -10,13 +10,13 @@
                     </div>
                     @foreach($products as $product)
                         <div class="col-sm-6 col-md-4 grid-view-post @foreach($product->categories as $cat) cat-{{ $cat->id }} @endforeach">
-                            <div class="post box">
+                            <div class="post box product-card-flex">
                                 <figure class="main"><a>
-                                        <img src="{{asset ('storage/' . $product->image)}}" alt="" /></a></figure>
+                                        <img src="{{asset ('storage/' . $product->image)}}" class="product-img-fixed" alt="" /></a></figure>
                                 <h4 class="post-title">{{$product->name}}</h4>
                                 <div class="meta"><span class="date">{{ $product->categories->pluck('name')->join(', ') }}</span><span class="category"><a href="#" class="link-effect">{{ $product->price }} Руб</a></span><span class="comments"><a href="#" class="link-effect"><i class="budicon-shopping-bag"></i>{{$product->count}}</a></span></div>
-                                <p>{{ $product->description }}</p>
-                                <form action="{{ route('cabinet.cart.add') }}" method="POST" style="margin-top: 10px;">
+                                <p class="product-description">{{ $product->description }}</p>
+                                <form action="{{ route('cabinet.cart.add') }}" method="POST" style="margin-top: auto;">
                                     @csrf
                                     <input type="hidden" name="product_id" value="{{ $product->id }}">
                                     <button type="submit" class="link-effect">В корзину</button>
