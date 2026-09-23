@@ -3,6 +3,12 @@
     <div class="container inner">
         <div class="blog grid-view">
             <div class="table-responsive">
+                @if (session('error'))
+                    <div class="alert alert-danger">
+                        {{ $message }}
+                    </div>
+                @endif
+
                 <table class="table table-striped table-bordered align-middle">
                     <thead>
                     <tr>
@@ -63,6 +69,11 @@
     <div class="container inner">
         <div class="thin">
             <div class="section-title text-center">
+                @if (session('error'))
+                    <div class="alert alert-danger">
+                        {{ $message }}
+                    </div>
+                @endif
                 <h3>Ваш заказ {{auth()->user()->name }}</h3>
                 <p class="lead">Срок доставки будет указан в письме</p>
             </div>
@@ -117,6 +128,12 @@
                             Итого: {{ $cartItems->sum(fn($item) => $item->product->price * $item->quantity) }} Руб
                         </div>
                     </div>
+                    @error('error')
+                    <div class="alert alert-danger" style="color: red; padding: 10px; border: 1px solid red; background-color: #f8d7da; border-radius: 5px; margin-bottom: 15px;">
+                        {{ $message }}
+                    </div>
+                    @enderror
+
                     <button type="submit">Оформить заказ</button>
                     <!--/.row -->
                 </form>

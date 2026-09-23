@@ -3,6 +3,7 @@
         <div class="blog grid-view col3">
             <div class="blog-posts text-boxes">
 
+
                     <div id="filters-container" class="cbp-filter-container text-center">
                         @foreach($categories as $category)
                             <div data-filter=".cat-{{$category->id}}" class="cbp-filter-item {{ $loop->first ? 'cbp-filter-item-active' : '' }}">{{$category->name}}</div>

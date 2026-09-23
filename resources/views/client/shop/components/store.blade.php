@@ -1,6 +1,16 @@
 <div class="light-wrapper">
     <div class="container inner">
         <div class="headline text-center">
+            <div class="alert alert-success">
+                <span>Уведомление</span>
+                @foreach(auth()->user()->unreadNotifications->take(1) as $notification)
+                    <div>
+                        <p>{{ $notification->data['message'] }} {{$notification->data['product_name']}}
+                        в количесве {{$notification->data['count']}} Шт
+                        </p>
+                    </div>
+                @endforeach
+            </div>
             <h2>Darova,{{auth()->user()->name }}</h2>
             <h3>Добро пожаловать</h3>
         </div>
@@ -12,7 +22,6 @@
             </div>
             <div id="grid-container" class="cbp">
                 @foreach($products as $product)
-
                 <div class="cbp-item
                 @foreach($product->categories as $category)
                 cat-{{ $category->id }}
@@ -27,11 +36,9 @@
                             </div>
                             </div>
                         </div>
-                </a> </div><!--/.cbp-caption-activeWrap -->
+                </a> </div>
                 @endforeach
         </div>
         </div>
-        <!--/.cbp-panel -->
     </div>
-    <!-- /.container -->
 </div>

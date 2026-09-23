@@ -21,7 +21,7 @@ class SliderSeeder extends Seeder
 
         for ($i = 0; $i < 10; $i++) {
             $colors = fake()->hexColor();
-            $title = $faker->sentence();
+            $title = $faker->text(200);
             $svg = '<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="400">'
                 . '<rect width="100%" height="100%" fill="' . $colors . '"/>'
                 . '</svg>';
@@ -29,7 +29,7 @@ class SliderSeeder extends Seeder
             Storage::disk('public')->put("slider/" . $i . ".svg", $svg);
             slider::create([
                 'Zagalovok' => $title,
-                'Description' => $faker->paragraph(),
+                'Description' => $faker->text(200),
                 'Active' => (bool)rand(0, 1),
                 'Image' => $filePath,
             ]);

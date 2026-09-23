@@ -23,24 +23,22 @@ class CartController extends Controller
 
     public function add(Request $request)
     {
-
         $productId = $request->product_id;//получить из запроса id
         $userId = Auth::id(); // id залогиненого бедолаги
-        $existingItem = CartItem::where('user_id', $userId)->where('product_id',$productId )->first(); //найти запись
-        if($existingItem){//если запись есть то увеличить колво на 1 / если нет то создать запись
-        $existingItem->quantity += 1;
-        $existingItem->save();
-        return redirect()->back();}//просто редирект
-        else
-        {
-        $cartItem = CartItem::create([
-            'user_id' => $userId,
-            'product_id' => $productId,
-            'quantity' => 1,
-        ]);
+        $existingItem = CartItem::where('user_id', $userId)->where('product_id', $productId)->first(); //найти запись
+        if ($existingItem) {//если запись есть то увеличить колво на 1 / если нет то создать запись
+            $existingItem->quantity += 1;
+            $existingItem->save();
+            return redirect()->back();
+        }//просто редирект
+        else {
+            $cartItem = CartItem::create([
+                'user_id' => $userId,
+                'product_id' => $productId,
+                'quantity' => 1,
+            ]);
         }
         return redirect()->back();
-
     }
     public function update(Request $request, $id){ //получить запись,получить значение,обноввить ,редирект
         $cartItem = CartItem::findOrFail($id);

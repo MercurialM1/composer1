@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Product;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Storage;
 
 class ProductSeeder extends Seeder
 {
@@ -14,6 +15,7 @@ class ProductSeeder extends Seeder
     public function run(): void
     {
         Product::truncate();
-        Product::factory()->count(10)->create();
+        Storage::disk('public')->deleteDirectory('products');
+        Product::factory()->count(5)->create();
     }
 }

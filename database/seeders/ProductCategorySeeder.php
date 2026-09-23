@@ -21,7 +21,7 @@ class ProductCategorySeeder extends Seeder
            ['name' => 'Смартфоны'],
            ['name' => 'Аксессуары'],
        ];
-       Category::create([
+       Category::firstOrcreate([
            'name' => $categories[rand(0,2)]['name'],
            'sort' => rand(1,5),
            'is_active' => (bool)rand(0,1),

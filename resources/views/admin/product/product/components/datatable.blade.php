@@ -14,6 +14,11 @@
 
             <div class="table-responsive">
             <table id="zero-config" class="table dt-table-hover" style="width:100%">
+                @if(session('success'))
+                    <div class="alert alert-success">
+                    {{session('success')}}
+                    </div>
+                @endif
                 <thead>
                 <tr>
                     <th>Название</th>

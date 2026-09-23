@@ -23,6 +23,9 @@ class AdminOrderController extends Controller
         ]);
 
         $order = Order::findOrFail($id);
+        if($order->status == 'cancelled'){
+            return redirect()->back()->with('error','«Фарш не провернуть назад, и мясо из котлет не восстановишь» - Пудге');
+        }
 
         $order->status = $request->status;
         $order->save();

@@ -17,10 +17,11 @@ class UserSeeder extends Seeder
         $faker = fake('ru_RU');
 
         for ($i = 0; $i < 10; $i++) {
-            User::create([
+            User::firstOrcreate([
                 'name' => $faker->name(),
                 'email' => $faker->unique()->email(),
                 'password' => Hash::make('password'),
+                'is_admin' => false,
         ]);
         }
     }

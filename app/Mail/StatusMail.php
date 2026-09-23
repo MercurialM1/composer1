@@ -11,7 +11,8 @@ use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 use App\Models\Order;
 
-class StatusMail extends Mailable
+class StatusMail extends Mailable implements ShouldQueue
+
 {
     use Queueable, SerializesModels;
 

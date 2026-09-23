@@ -20,7 +20,12 @@
                                 {{ session('success') }}
                             </div>
                         @endif
-                            <table id="zero-config" class="table dt-table-hover" style="width:100%">
+                            @if(session('error'))
+                                <div class="alert alert-warning">
+                                {{session('error')}}
+                                </div>
+                            @endif
+                                <table id="zero-config" class="table dt-table-hover" style="width:100%">
 
                             <thead>
 
@@ -62,11 +67,8 @@
                                         <option value="processing" {{ $order->status == 'processing' ? 'selected' : '' }}>В обработке</option>
                                             <option value="completed" {{$order->status == 'completed' ? 'selected' : ''}}>Завершён</option>
                                             <option value="cancelled" {{$order->status == 'cancelled' ? 'selected' : ''}}>Отменён</option>
-
-
                                         </select>
                                             <button type="submit">Выбрать</button>
-
 
                                         </form>
                                     </td>

@@ -47,10 +47,16 @@
                     <div>
     <label>Имя</label>
     <input type="text" name="name" value="{{$product->name}}">
+                        @error('name')
+                        <p style="color: red;">{{ $message }}</p>
+                        @enderror
                     </div>
                     <div>
                         <label>Описание</label>
 <textarea name="description">{{$product->description}}</textarea>
+                        @error('description')
+                        <p style="color: red;">{{ $message }}</p>
+                        @enderror
                     </div>
                         <div>
     <label>Путь</label>
@@ -68,6 +74,9 @@
                         <div>
                             <label>Цена</label>
                             <input name="price" value="{{$product->price}}">
+                            @error('price')
+                            <p style="color: red;">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div>
                             <label>Доставка</label>

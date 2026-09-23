@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductRequest;
 use App\Models\CategoryShop;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -31,18 +32,8 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        $request->validate([
-           'name' => 'required',
-           'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'is_active' => 'boolean',
-            'sort' => 'integer',
-            'count' => 'required|integer',
-            'description' => 'required',
-            'price' => 'required|integer',
-            'delivery' => 'required|string',
-        ]);
         $path = $request->file('image')->store('products', 'public');
         $photo = Product::create([
             'name' => $request->name,
@@ -74,25 +65,14 @@ class ProductController extends Controller
         $categories = CategoryShop::all();
         $product = Product::findOrFail($id);
         return view('admin.product.product.edit', compact('categories', 'product'));
-
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ProductRequest $request, string $id)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'is_active' => 'nullable|boolean',
-            'sort' => 'integer',
-            'count' => 'integer',
-            'description' => 'required|string',
-            'price' => 'integer',
-            'delivery' => 'string',
 
-        ]);
          $product = Product::findOrFail($id);
         $path = $request->hasFile('image') ? $request->file('image')->store('products', 'public') : $product->image;
         $product->update([
@@ -108,7 +88,7 @@ class ProductController extends Controller
         ]);
         $categories = $request->input('productcategories',[]);
         $product->categories()->sync($categories);
-        return redirect()->route('admin.product.index');
+        return redirect()->route('admin.product.index')->with('success',"Товар  {$product->name} обновлён");
     }
     /**
      * Remove the specified resource from storage.
@@ -116,7 +96,7 @@ class ProductController extends Controller
     public function destroy(string $id)
     {
         $product = Product::findOrFail($id);
-        Storage::disk('public')->delete($product->image);
+
         $product->delete();
         return redirect()->route('admin.product.index');
     }

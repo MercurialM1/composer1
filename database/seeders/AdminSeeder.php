@@ -19,17 +19,19 @@ class AdminSeeder extends Seeder
             }
 
 
-    User::create([
+    User::updateOrCreate(
+        ['email'=>config('admin.email')],
+        [
         'name' => config('admin.name'),
-        'email' =>config('admin.email'),
         'password' => Hash::make(config('admin.password')),
         'is_admin' => true,
         'email_verified_at' => now(),
 
-    ]);
+        ]);
         $this->command->info('Админ готов');
     }
 }
+
 //User::create([
 //            'name' => 'Admin',
 //            'email'=>'admin@admin.admin',
