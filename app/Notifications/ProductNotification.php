@@ -11,6 +11,7 @@ use Illuminate\Notifications\Notification;
 class ProductNotification extends Notification implements ShouldQueue
 {
     use Queueable;
+
     protected $product;
 
     /**
@@ -32,7 +33,7 @@ class ProductNotification extends Notification implements ShouldQueue
             'product_id' => $this->product->id,
             'product_name' => $this->product->name,
             'count' => $this->product->count,
-            'message' =>'Новый товар'
+            'message' => 'Новый товар'
 
         ];
     }

@@ -22,7 +22,7 @@ class CheckoutService
         }
         $total = $cartItems->sum(fn($item) => $item->product->price * $item->quantity);//расчёт суммы
 
-        $order = Order::сreate(array_merge($validated,['user_id' => $userId,'total_price' => $total]));
+        $order = Order::create(array_merge($validated,['user_id' => $userId,'total_price' => $total]));
         foreach ($cartItems as $cartItem) {
             $orderItem = OrderItem::create([
                 'order_id' => $order->id,

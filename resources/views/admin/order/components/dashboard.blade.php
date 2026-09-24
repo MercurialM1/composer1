@@ -12,90 +12,189 @@
                             </div>
                         </div>
                     </div>
-                <div class="row layout-top-spacing">
-                <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
-                    <div class="widget-content widget-content-area br-8">
-                        @if(session('success'))
-                            <div class="alert alert-success">
-                                {{ session('success') }}
-                            </div>
-                        @endif
-                            @if(session('error'))
-                                <div class="alert alert-warning">
-                                {{session('error')}}
-                                </div>
-                            @endif
+                    <div class="row layout-top-spacing">
+                        <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+                            <div class="widget-content widget-content-area br-8">
+                                @if(session('success'))
+                                    <div class="alert alert-success">
+                                        {{ session('success') }}
+                                    </div>
+                                @endif
+                                @if(session('error'))
+                                    <div class="alert alert-warning">
+                                        {{session('error')}}
+                                    </div>
+                                @endif
                                 <table id="zero-config" class="table dt-table-hover" style="width:100%">
 
-                            <thead>
+                                    <thead>
 
-                            <tr>
-                                <th>ID</th>
-                                <th>Пользователь</th>
-                                <th>Товар</th>
-                                <th>Комментарий</th>
-                                <th>Статус</th>
-                                <th>Сумма</th>
-                                <th>Дата</th>
-                                <th>Действия</th>
-                            </tr>
-                            </thead>
-                            <tbody>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Пользователь</th>
+                                        <th>Товар</th>
+                                        <th>Комментарий</th>
+                                        <th>Статус</th>
+                                        <th>Сумма</th>
+                                        <th>Дата</th>
+                                        <th>Действия</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
 
-                            @foreach($orders as $order)
-                                <tr>
-                                    <td>
-                                        {{$order->id}}
-                                    </td>
-                                    <td>
-                                        <div>{{$order->user->name}}<br> {{$order->recipient_name}}</div>
-                                    </td>
-                                    <td>
-                                        @foreach($order->items as $item)
-                                            <div>{{ $item->product->name }} ({{ $item->quantity }} шт)</div>
-                                        @endforeach
-                                    </td>
+                                    @foreach($orders as $order)
+                                        <tr>
+                                            <td>
+                                                {{$order->id}}
+                                            </td>
+                                            <td>
+                                                <div>{{$order->user->name}}<br> {{$order->recipient_name}}</div>
+                                            </td>
+                                            <td>
+                                                @foreach($order->items as $item)
+                                                    <div>{{ $item->product->name }} ({{ $item->quantity }} шт)</div>
+                                                @endforeach
+                                            </td>
 
-                                    <td>
-                                        {{$order->comment}}
-                                    </td>
-                                    <td><form action="{{route('admin.order.update',$order->id)}}" method="post" id="selectProgrammingLanguageForm">
-                                            @csrf
-                                            @method('PUT')
-                                        <select  id="selectProgrammingLanguage" name="status">
-                                        <option value="new" {{$order->status == 'new' ? 'selected' : ''}}>Новый</option>
-                                        <option value="processing" {{ $order->status == 'processing' ? 'selected' : '' }}>В обработке</option>
-                                            <option value="completed" {{$order->status == 'completed' ? 'selected' : ''}}>Завершён</option>
-                                            <option value="cancelled" {{$order->status == 'cancelled' ? 'selected' : ''}}>Отменён</option>
-                                        </select>
-                                            <button type="submit">Выбрать</button>
+                                            <td>
+                                                {{$order->comment}}
+                                            </td>
+                                            <td>
+                                                    <select class="status-select" data-order-id="{{ $order->id }}">
+                                                        <option value="new" {{ $order->status == 'new' ? 'selected' : '' }}>Новый</option>
+                                                        <option value="processing" {{ $order->status == 'processing' ? 'selected' : '' }}>В обработке</option>
+                                                        <option value="completed" {{ $order->status == 'completed' ? 'selected' : '' }}>Завершён</option>
+                                                        <option value="cancelled" {{ $order->status == 'cancelled' ? 'selected' : '' }}>Отменён</option>
+                                                    </select>
+                                                    <button type="button"
+                                                            class="update-status-btn"
+                                                            data-url="{{ route('admin.order.update', $order->id) }}">Выбрать
+                                                    </button>
+                                            </td>
 
-                                        </form>
-                                    </td>
+                                            <td>
+                                                {{$order->total_price}}
+                                            </td>
+                                            <td>
+                                                {{ $order->created_at?->format('d.m.Y H:i') }}
+                                            </td>
+                                            <td>
+                                                <button type="button" class="delete-order-btn"
+                                                        data-url="{{route('admin.order.destroy',$order->id)}}">удалить
+                                                </button>
 
-                                    <td>
-                                        {{$order->total_price}}
-                                    </td>
-                                    <td>
-                                        {{ $order->created_at?->format('d.m.Y H:i') }}
-                                    </td>
-                                    <td>
-                                        <form action ="{{route('admin.order.destroy',$order->id)}}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button
-                                                type="submit">удалить
-                                            </button>
 
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
-                         </tbody>
-                        </table>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+
+
+                                    </tbody>
+                                </table>
+                                    <div class="alert custom-alert-1 alert-dismissible mb-4" style="display: none;" role="alert" id="modal-window">
+                                        <div class="media">
+                                            <div class="alert-icon">
+
+                                            </div>
+                                            <div class="media-body">
+                                                <div class="alert-text">
+                                                    <strong>Подтвердите действие<br>Вы уверены, что хотите удалить заказ № </strong><span id="modal-order-id"></span>
+                                                </div>
+                                                <div class="alert-btn">
+                                                    <button type="button" class="btn btn-secondary" id="modal-confirm-delete">Да</button>
+
+                                                    <button type="button" class="btn btn-secondary" id="modal-cancel">Отмена</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div><script>
+                                const modal = document.getElementById('modal-window')
+                                const modalDelete = document.getElementById('modal-confirm-delete')
+                                const modalCancel = document.getElementById('modal-cancel')
+                                const modalOrderId = document.getElementById('modal-order-id')
+                                let deleteUrl = null;
+                                let deleteButton = null;
+                                //найти селектор точнее кнопку выбора
+                                const updateButtons = document.querySelectorAll('.update-status-btn')
+                                //отслеживание нажатия на селектор
+                                updateButtons.forEach(function (button) {
+                                    button.addEventListener('click', function () {
+                                        const select = button.closest('td').querySelector('.status-select')
+
+                                        const newStatus = select.value
+
+                                        const token = document.querySelector('meta[name="csrf-token"]').content;
+
+                                        fetch(button.dataset.url, {
+                                            method: 'POST',
+                                            headers: {
+                                                'X-CSRF-TOKEN': token,
+                                                'Accept': 'application/json',
+                                                'Content-Type': 'application/x-www-form-urlencoded'
+                                            },//снизу чото типо какая то подмена (без неё нихуя не работало)
+                                            body: new URLSearchParams({
+                                                _method: 'PUT',
+                                                status: newStatus
+                                            })
+                                        })
+                                            //подсветка при изменении
+                                            .then(function (response) {
+                                                if (response.ok) {
+                                                    select.style.backgroundColor = '#90EE90'
+                                                    setTimeout(function () {
+                                                        select.style.backgroundColor = '';
+                                                    }, 2000);
+
+                                                }
+
+                                            });
+                                    })
+                                })
+                                //кнопка отмена
+                                modalCancel.addEventListener('click',function (){
+                                    modal.style.display = "none"
+                                })
+                                //кнопка удалить
+                                modalDelete.addEventListener('click',function (){
+                                    modal.style.display = 'none';
+
+                                 const token = document.querySelector('meta[name="csrf-token"]')
+                                fetch(deleteUrl,{
+                                    method:'DELETE',
+                                    headers: {
+                                        'X-CSRF-TOKEN': token,
+                                        'Accept': 'application/json',
+                                    }
+                                })
+                                .then(function (response){
+                                    console.log('otvet:',response.status);
+                                    if (response.ok) {
+                                        const tr = deleteButton.closest("tr")
+                                        tr.remove();
+                                    }
+                                });
+                                });
+                                //найти кнопку по классу
+                                const buttons = document.querySelectorAll('.delete-order-btn');
+                                //проверить кнопку на нажатие
+                                buttons.forEach(function (button) {
+                                    button.addEventListener('click',function () {
+                                        //подтверждение
+
+                                    modal.style.display = 'flex'
+
+                                    const orderId = button.dataset.url.split('/').pop();
+                                    modalOrderId.textContent = orderId;
+
+
+                                    })
+                                })
+
+
+                            </script>
+                        </div>
                     </div>
-                </div>
-                </div>
                 </div>
 
             </div>

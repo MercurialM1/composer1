@@ -11,7 +11,7 @@ class CartItemRepository
         return CartItem::where('user_id', $userId)->with('product')->get();
     }
 
-    public function deleteByUserId(int $userId): void//удались по пользователю
+    public function deleteByUserId(int $userId): void//удалить по пользователю
     {
         CartItem::where('user_id', $userId)->delete();
     }
