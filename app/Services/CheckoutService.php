@@ -2,9 +2,13 @@
 
 namespace App\Services;
 
+use App\Mail\StatusMail;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\User;
+use App\Repositories\AdminOrderRepository;
 use App\Repositories\CartItemRepository;
+use Illuminate\Support\Facades\Mail;
 
 
 class CheckoutService
@@ -31,8 +35,10 @@ class CheckoutService
                 'total_price' => $cartItem->product->price * $cartItem->quantity,
             ]);
         }
+        $user = User::find($userId);
         //теперь это просто вызов команды из репозитория
         $this->cartItemRepository->deleteByUserId($userId);
+        Mail::to($user->email)->send(new StatusMail($order));
         return $order;
     }
 

@@ -54,14 +54,13 @@ body {
                         <h2 style="margin: 0;">Ptichki</h2>
                     </td>
                 </tr>
-                ё
                 <tr>
                     <td class="content">
                         <h3 style="margin-top: 0; color: #111111;">Привет {{ $order->recipient_name }}!</h3>
-<p>Ваш заказ в статуе:{{$order->status}}<br>
+<p>Спасибо за покупку<br>
     Итоговая сумма:{{ $order->total_price }}руб<br>
     @foreach($order->items as $item)
-    <br>{{$item->product->name}}: {{$item->quantity}}шт</p>
+    Вы заказали:<br>{{$item->product->name}}: {{$item->quantity}}шт</p>
                         @endforeach
 <table cellpadding="0" cellspacing="0" style="margin: 25px 0;">
     <tr>
@@ -80,7 +79,7 @@ body {
 
 <tr>
     <td class="footer">
-        <p style="margin: 0;">Вы получили это письмо, так как были зарегистроированы Админом.</p>
+        <p style="margin: 0;">Вы получили это письмо, так как сделали заказ.</p>
     </td>
 </tr>
 </table>

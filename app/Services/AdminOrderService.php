@@ -2,7 +2,9 @@
 
 namespace App\Services;
 
-use App\Mail\StatusMail;
+use App\Mail\cancelMail;
+use App\Mail\finallMail;
+use App\Mail\StatusProgressMail;
 use App\Models\Order;
 use App\Repositories\AdminOrderRepository;
 use Illuminate\Support\Facades\Mail;
@@ -18,28 +20,26 @@ class AdminOrderService
 
     public function updateStatus($id, string $newStatus): ?Order
     {
+
         //найти заказ
         $order = $this->adminOrderRepository->findOrder($id);
-        //если заказ отменён вернуть нихуя
+        $email = $order->user->email;
+        //если заказ отменён вернуть нихуя i pismo
         if ($order->status == 'cancelled') {
+            Mail::to($email)->send(new cancelMail($order));
             return null;
         }//назначение нового статуса
         $order->status = $newStatus;
         //сохранить
         $order->save();
         //обьявить почту
-        $email = $order->user->email;
+
         //пак писем заглушек
         if ($newStatus == 'processing') {
-
-            Mail::raw("Ваш заказ в статусе {$newStatus}", function ($message) use ($email) {
-                $message->to($email);
-            });
+                Mail::to($email)->send(new StatusProgressMail($order));
         }
         if ($newStatus == 'completed') {
-            Mail::raw("Ваш заказ был доставлен {$newStatus}", function ($message) use ($email) {
-                $message->to($email);
-            });
+            Mail::to($email)->send(new finallMail($order));
         }
 
 

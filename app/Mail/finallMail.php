@@ -10,15 +10,13 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class StatusMail extends Mailable implements ShouldQueue
-
+class finallMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      */
-
     public $order;
     public function __construct($order)
     {
@@ -31,7 +29,7 @@ class StatusMail extends Mailable implements ShouldQueue
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Status Mail',
+            subject: 'Final Mail',
         );
     }
 
@@ -41,7 +39,7 @@ class StatusMail extends Mailable implements ShouldQueue
     public function content(): Content
     {
         return new Content(
-            view: 'mail.status_mail',
+            view: 'mail.finalMail',
         );
     }
 

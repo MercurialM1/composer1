@@ -71,7 +71,6 @@
                                                             data-url="{{ route('admin.order.update', $order->id) }}">Выбрать
                                                     </button>
                                             </td>
-
                                             <td>
                                                 {{$order->total_price}}
                                             </td>
@@ -82,8 +81,6 @@
                                                 <button type="button" class="delete-order-btn"
                                                         data-url="{{route('admin.order.destroy',$order->id)}}">удалить
                                                 </button>
-
-
                                             </td>
                                         </tr>
                                     @endforeach
@@ -109,10 +106,12 @@
                                         </div>
                                     </div>
                             </div><script>
+                                //сссылкт на кнопки с html
                                 const modal = document.getElementById('modal-window')
                                 const modalDelete = document.getElementById('modal-confirm-delete')
                                 const modalCancel = document.getElementById('modal-cancel')
                                 const modalOrderId = document.getElementById('modal-order-id')
+                                //значение кнопки и ссылки по стандарту можно менять потому что let
                                 let deleteUrl = null;
                                 let deleteButton = null;
                                 //найти селектор точнее кнопку выбора
@@ -121,11 +120,11 @@
                                 updateButtons.forEach(function (button) {
                                     button.addEventListener('click', function () {
                                         const select = button.closest('td').querySelector('.status-select')
-
+                                        // новый статус с селектора
                                         const newStatus = select.value
-
+                                        //csrf
                                         const token = document.querySelector('meta[name="csrf-token"]').content;
-
+                                        // типо сам ajax
                                         fetch(button.dataset.url, {
                                             method: 'POST',
                                             headers: {
@@ -140,6 +139,7 @@
                                         })
                                             //подсветка при изменении
                                             .then(function (response) {
+                                                //если ответ 200 тогда вруби на 2 сек зелёный цвет
                                                 if (response.ok) {
                                                     select.style.backgroundColor = '#90EE90'
                                                     setTimeout(function () {
@@ -153,20 +153,21 @@
                                 })
                                 //кнопка отмена
                                 modalCancel.addEventListener('click',function (){
+                                    //не отображать
                                     modal.style.display = "none"
                                 })
                                 //кнопка удалить
                                 modalDelete.addEventListener('click',function (){
                                     modal.style.display = 'none';
-
-                                 const token = document.querySelector('meta[name="csrf-token"]')
+                                    //аля csrf
+                                 const token = document.querySelector('meta[name="csrf-token"]').content;
                                 fetch(deleteUrl,{
                                     method:'DELETE',
                                     headers: {
                                         'X-CSRF-TOKEN': token,
                                         'Accept': 'application/json',
                                     }
-                                })
+                                })//для проверки в консоли
                                 .then(function (response){
                                     console.log('otvet:',response.status);
                                     if (response.ok) {
@@ -180,18 +181,16 @@
                                 //проверить кнопку на нажатие
                                 buttons.forEach(function (button) {
                                     button.addEventListener('click',function () {
-                                        //подтверждение
-
+                                    //показать окно подтверждения
                                     modal.style.display = 'flex'
-
+                                    //вытащитть id заказа
                                     const orderId = button.dataset.url.split('/').pop();
                                     modalOrderId.textContent = orderId;
-
-
+                                    //переназначить кнопки и url
+                                    deleteUrl = button.dataset.url
+                                    deleteButton = button
                                     })
                                 })
-
-
                             </script>
                         </div>
                     </div>
