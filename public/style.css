@@ -42,13 +42,13 @@ Author:		elemis
 	32. FONT ICON PAGES
 	33. DIVIDERS
 	34. RESPONSIVE
-	
+
 	font-family: 'Lato', sans-serif;
 	font-family: 'Montserrat', sans-serif;
 	text: #757575
 	hover: #45be84
 	headings: #434343
-	
+
 -------------------------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------------*/
 /*	00. RESET
@@ -86,7 +86,7 @@ iframe {
     background: #c2e6d5; /* Firefox */
     color: #2f2f2f;
 }
-@-webkit-keyframes rotation { 
+@-webkit-keyframes rotation {
 	from {
 	    -webkit-transform: rotate(0deg)
 	}
@@ -94,7 +94,7 @@ iframe {
 	    -webkit-transform: rotate(359deg)
 	}
 }
-@-moz-keyframes rotation { 
+@-moz-keyframes rotation {
 	from {
 	    -moz-transform: rotate(0deg)
 	}
@@ -102,7 +102,7 @@ iframe {
 	    -moz-transform: rotate(359deg)
 	}
 }
-@-o-keyframes rotation { 
+@-o-keyframes rotation {
 	from {
 	    -o-transform: rotate(0deg)
 	}
@@ -110,7 +110,7 @@ iframe {
 	    -o-transform: rotate(359deg)
 	}
 }
-@keyframes rotation { 
+@keyframes rotation {
 	from {
 	    transform: rotate(0deg)
 	}
@@ -985,6 +985,14 @@ footer ul.circled li:before {
 .caret {
     border-top: 4px solid
 }
+.product-img-fixed {
+    width: 100%; /* Картинка будет растягиваться на всю ширину карточки */
+    height: 200px; /* Строго фиксированная высота для всех товаров */
+    object-fit: cover; /* Обрезает лишнее, сохраняя пропорции */
+    object-position: center; /* Центрирует изображение */
+    display: block; /* Убирает лишние отступы снизу */
+}
+
 .navbar .top-bar {
 	display: none;
 }
@@ -2084,7 +2092,7 @@ figure a .text-overlay .info span {
     position: relative;
     visibility: visible;
 }
-@-webkit-keyframes cd-pulse { 
+@-webkit-keyframes cd-pulse {
 	0% {
 	    -webkit-transform: translateY(-50%) scale(1);
 	    opacity: 1;
@@ -2098,7 +2106,7 @@ figure a .text-overlay .info span {
 	    opacity: 0;
 	}
 }
-@-moz-keyframes cd-pulse { 
+@-moz-keyframes cd-pulse {
 	0% {
 	    -moz-transform: translateY(-50%) scale(1);
 	    opacity: 1;
@@ -2112,7 +2120,7 @@ figure a .text-overlay .info span {
 	    opacity: 0;
 	}
 }
-@keyframes cd-pulse { 
+@keyframes cd-pulse {
 	0% {
 	    -webkit-transform: translateY(-50%) scale(1);
 	    -moz-transform: translateY(-50%) scale(1);
@@ -3989,7 +3997,7 @@ textarea {
 /*-----------------------------------------------------------------------------------*/
 /*	34. RESPONSIVE
 /*-----------------------------------------------------------------------------------*/
-@media (min-width: 992px) { 
+@media (min-width: 992px) {
 	.navbar .nav.navbar-nav > li:last-of-type > ul {
 	    left: auto;
 	    right: 0;
@@ -4260,13 +4268,13 @@ textarea {
 	    margin-bottom: 6px;
 	}
 }
-@media (min-width: 768px) and (max-width: 991px) { 
+@media (min-width: 768px) and (max-width: 991px) {
 	.container {
 	    padding-right: 15px;
 	    padding-left: 15px;
 	}
 }
-@media (max-width: 767px) { 
+@media (max-width: 767px) {
 	.container {
 	    padding-right: 20px;
 	    padding-left: 20px;

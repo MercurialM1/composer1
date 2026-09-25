@@ -65,7 +65,7 @@
                         <table cellpadding="0" cellspacing="0" style="margin: 25px 0;">
                             <tr>
                                 <td align="center">
-                                    <a href="{{route('cabinet.cart.index')}}" class="button" target="_blank">К покупкам</a>
+                                    <a href="{{route('cabinet.shop')}}" class="button" target="_blank">К покупкам</a>
                                 </td>
                             </tr>
                             <tr>
