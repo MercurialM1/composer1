@@ -161,8 +161,11 @@
                                     modal.style.display = 'none';
                                     //аля csrf
                                  const token = document.querySelector('meta[name="csrf-token"]').content;
-                                fetch(deleteUrl,{
+                                    //принимает url
+                                 fetch(deleteUrl,{
+                                     //кофиг метода
                                     method:'DELETE',
+                                     //токен csrf и тип даннх
                                     headers: {
                                         'X-CSRF-TOKEN': token,
                                         'Accept': 'application/json',
