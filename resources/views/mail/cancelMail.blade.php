@@ -57,7 +57,7 @@
                 <tr>
                     <td class="content">
                         <h3 style="margin-top: 0; color: #111111;">Привет {{ $order->recipient_name }}!</h3>
-                        <p>Ваш закакз был отменён<br>
+                        <p>Ваш заказ был отменён<br>
                             @foreach($order->items as $item)
                                 Вы заказывали:<br>{{$item->product->name}}: {{$item->quantity}}шт</p>
                         @endforeach

@@ -27,7 +27,6 @@ class AdminOrderService
         //если заказ отменён вернуть нихуя i pismo
         if ($order->status == 'cancelled') {
             Mail::to($email)->send(new cancelMail($order));
-            return null;
         }//назначение нового статуса
         $order->status = $newStatus;
         //сохранить
