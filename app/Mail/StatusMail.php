@@ -31,7 +31,7 @@ class StatusMail extends Mailable implements ShouldQueue
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Status Mail',
+            subject: 'BuyMail',
         );
     }
 

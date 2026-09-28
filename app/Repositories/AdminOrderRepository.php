@@ -10,4 +10,5 @@ class AdminOrderRepository
     {
         return Order::with('user','items')->findOrFail($id);
     }
+
 }

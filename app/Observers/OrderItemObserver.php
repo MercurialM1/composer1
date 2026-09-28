@@ -3,8 +3,6 @@
 namespace App\Observers;
 
 use App\Models\OrderItem;
-use App\Models\Product;
-use Illuminate\Support\Facades\Log;
 
 class OrderItemObserver
 {
@@ -17,7 +15,6 @@ class OrderItemObserver
         $product->count >= $orderItem->quantity;
         $product->decrement('count',$orderItem->quantity);//вычитание количества после покупи
     }
-
     /**
      * Handle the OrderItem "updated" event.
      */

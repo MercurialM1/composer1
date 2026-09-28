@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Order extends Model
 {
-//    public $timestamps = false;
     protected $fillable =[
         'user_id',
         'recipient_name',

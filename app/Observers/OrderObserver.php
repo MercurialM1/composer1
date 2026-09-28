@@ -25,13 +25,14 @@ class OrderObserver
             }
         }
     }
-
     /**
      * Handle the Order "deleted" event.
      */
     public function deleted(Order $order): void
     {
-        //
+        foreach ($order->items as $item) {
+            $item->product->increment('count',$item->quantity);
+        }
     }
 
     /**
