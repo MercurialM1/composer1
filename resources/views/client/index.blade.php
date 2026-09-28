@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="{{ asset('style/images/favicon.png') }}">
-    <title>Hygge</title>
+    <link rel="shortcut icon" href="{{ asset('public/style/images/icons/lulu-checkered-flag.png') }}">
+    <title>Магазин</title>
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('/style/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('/style/css/plugins.css') }}" rel="stylesheet">

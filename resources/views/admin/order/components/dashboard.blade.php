@@ -60,7 +60,7 @@
                                                 {{$order->comment}}
                                             </td>
                                             <td>
-                                                    <select class="status-select" data-order-id="{{ $order->id }}">
+                                                    <select  class="status-select" data-order-id="{{ $order->id }}">
                                                         <option value="new" {{ $order->status == 'new' ? 'selected' : '' }}>Новый</option>
                                                         <option value="processing" {{ $order->status == 'processing' ? 'selected' : '' }}>В обработке</option>
                                                         <option value="completed" {{ $order->status == 'completed' ? 'selected' : '' }}>Завершён</option>
@@ -140,6 +140,7 @@
                                             //подсветка при изменении
                                             .then(function (response) {
                                                 //если ответ 200 тогда вруби на 2 сек зелёный цвет
+                                                console.log('otvet:',response.status);
                                                 if (response.ok) {
                                                     select.style.backgroundColor = '#90EE90'
                                                     setTimeout(function () {
@@ -186,10 +187,10 @@
                                     button.addEventListener('click',function () {
                                     //показать окно подтверждения
                                     modal.style.display = 'flex'
-                                    //вытащитть id заказа
+                                    //вытащитть id заказа последный элемент показывает там id в ссылке
                                     const orderId = button.dataset.url.split('/').pop();
                                     modalOrderId.textContent = orderId;
-                                    //переназначить кнопки и url
+                                    //переназначить кнопку и url
                                     deleteUrl = button.dataset.url
                                     deleteButton = button
                                     })
