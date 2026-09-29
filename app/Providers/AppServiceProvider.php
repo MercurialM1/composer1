@@ -5,7 +5,6 @@ namespace App\Providers;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
-use App\Observers\MailObserver;
 use App\Observers\OrderItemObserver;
 use App\Observers\OrderObserver;
 use App\Observers\ProductObserver;
@@ -29,6 +28,5 @@ class AppServiceProvider extends ServiceProvider
         Product::observe(ProductObserver::class); //привязка к модели
         OrderItem::observe(OrderItemObserver::class);
         Order::observe(OrderObserver::class);
-        Order::observe(MailObserver::class);
     }
 }

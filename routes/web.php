@@ -52,66 +52,6 @@ Route::get('/contact', [ContactController::class, 'create'])->name('contact');//
 
 Route::post('/contact', [ContactController::class, 'store'])->name('contactus.store');
 
-Route::get('/sliderControl', function () {
-    return view('pages.slider');
-})->name('sliderControl');
-
-Route::get('/elements', function () {
-    return view('pages.elements');
-})->name('elements');
-
-Route::get('/header', function () {
-    return view('pages.header');
-})->name('header');
-
-Route::get('/services', function () {
-    return view('pages.services');
-})->name('services');
-
-Route::get('/faq', function () {
-    return view('pages.faq');
-})->name('faq');
-
-Route::get('/charts', function () {
-    return view('pages.charts');
-})->name('charts');
-
-Route::get('/pricing', function () {
-    return view('pages.pricing');
-})->name('pricing');
-
-Route::get('/headings', function () {
-    return view('pages.headings');
-})->name('headings');
-
-Route::get('/disqus', function () {
-    return view('pages.disqus');
-})->name('disqus');
-
-Route::get('/icon-lulu', function () {
-    return view('pages.icon-lulu');
-})->name('icon-lulu');
-
-Route::get('/icon-budicon', function () {
-    return view('pages.icon-budicon');
-})->name('icon-budicon');
-
-Route::get('/icon-fontello', function () {
-    return view('pages.icon-fontello');
-})->name('icon-fontello');
-
-Route::get('/headings', function () {
-    return view('pages.headings');
-})->name('headings');
-
-Route::get('/animation', function () {
-    return view('pages.animation');
-})->name('animation');
-
-Route::get('/onepage', function () {
-    return view('pages.onepage');
-})->name('onepage');
-
 
 Route::get('/dashboard', function () {
     return view('dashboard');

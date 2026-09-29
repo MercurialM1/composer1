@@ -7,13 +7,14 @@ use App\Models\OrderItem;
 class OrderItemObserver
 {
     /**
-     * Handle the OrderItem "created" event.
+     * В created логика расчёта к количества товара
+     * что бы не купили больше чем есть
      */
     public function created(OrderItem $orderItem): void
     {
         $product = $orderItem->product;
-        $product->count >= $orderItem->quantity;
-        $product->decrement('count',$orderItem->quantity);//вычитание количества после покупи
+        //вычитание количества после покупки
+        $product->decrement('count',$orderItem->quantity);
     }
     /**
      * Handle the OrderItem "updated" event.

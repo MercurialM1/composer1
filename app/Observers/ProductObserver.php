@@ -34,7 +34,7 @@ class ProductObserver
     }
 
     /**
-     * Handle the Product "deleted" event.
+     *
      */
     public function deleted(Product $product): void //не забыть про chown -R www-data:www-data storage/ без него не удаляется нихуя а файлы добавленные вручную удаляются без этого
     {
