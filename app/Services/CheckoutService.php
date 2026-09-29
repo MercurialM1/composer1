@@ -18,25 +18,26 @@ class CheckoutService
         $this->orderRepository = $orderRepository;
     }
     public function checkout(int $userId,array $validated): ?Order
-    {
+    {   //корзина челика
         $cartItems = $this->cartItemRepository->getByUserId($userId);
+        //проверка на пустую корзину
         if($cartItems->isEmpty()){
             return null;
         }
         $total = $cartItems->sum(fn($item) => $item->product->price * $item->quantity);//расчёт суммы
+        //создание заказа
         $order = $this->orderRepository->createOrder($userId,$validated,$total);
         foreach ($cartItems as $cartItem){
-            $itemTotalPrice = $cartItem->product->price * $cartItem->quantity;
 
             $this->orderRepository->createOrderItem(
                 $order,
                 $cartItem->product_id,
                 $cartItem->quantity,
-                $itemTotalPrice
+                $total
             );
         }
 
-        //теперь это просто вызов команды из репозитория
+        //удалить корзину
         $this->cartItemRepository->deleteByUserId($userId);
         return $order;
     }

@@ -34,7 +34,6 @@ class ProductNotification extends Notification implements ShouldQueue
             'product_name' => $this->product->name,
             'count' => $this->product->count,
             'message' => 'Новый товар'
-
         ];
     }
 }

@@ -9,7 +9,7 @@ class AdminOrderService
 {
     private $adminOrderRepository;
     public function __construct(AdminOrderRepository $adminOrderRepository)
-    {
+    {   
         $this->adminOrderRepository = $adminOrderRepository;
     }
 
@@ -25,7 +25,7 @@ class AdminOrderService
     }
 
     public function deleteOrder($id)
-    {
+    {   //теперь товары возвращаются при удалении
         $order = $this->adminOrderRepository->findOrder($id);
         $order->items()->delete();
         $order->delete();
