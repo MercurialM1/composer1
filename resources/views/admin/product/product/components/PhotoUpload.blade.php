@@ -92,7 +92,22 @@
                         </div>
 
                         <button type="submit">Обновить</button>
-</form>
+
+                        <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" rel="stylesheet">
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+
+                        <div class="image-container">
+                            <img id="image" src="" alt="img for crop">
+                        </div>
+                        <div class="button-container">
+                            <input type="file" id="file-input" accept="image/*">
+                            <button id="crop-button">Crop</button>
+                        </div>
+                        <div class="preview-container">
+                            <img id="preview" src="" alt="preview crop">
+                        </div>
+
+                    </form>
                     </div>
                 </div>
             </div>

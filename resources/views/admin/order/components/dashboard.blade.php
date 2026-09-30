@@ -1,5 +1,5 @@
 <div id="content" class="main-content">
-    <div class="container">
+        <div class="container">
         <div class="row layout-top-spacing">
             <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
                 <div class="statbox widget box box-shadow">
@@ -96,7 +96,8 @@
 
                                     </tbody>
                                 </table>
-                                <div class="alert custom-alert-1 alert-dismissible mb-4" style="display: none;"
+                                    <div class="modal-overlay" id="modal-overlay">
+                                <div class="alert custom-alert-1 alert-dismissible mb-4"
                                      role="alert" id="modal-window">
                                     <div class="media">
                                         <div class="alert-icon">
@@ -119,10 +120,11 @@
                                         </div>
                                     </div>
                                 </div>
+                             </div>
                             </div>
                             <script>
                                 //сссылкт на кнопки с html
-                                const modal = document.getElementById('modal-window')
+                                const modalOverlay = document.getElementById('modal-overlay');
                                 const modalDelete = document.getElementById('modal-confirm-delete')
                                 const modalCancel = document.getElementById('modal-cancel')
                                 const modalOrderId = document.getElementById('modal-order-id')
@@ -170,11 +172,11 @@
                                 //кнопка отмена
                                 modalCancel.addEventListener('click', function () {
                                     //не отображать
-                                    modal.style.display = "none"
+                                    modalOverlay.style.display = 'none';
                                 })
                                 //кнопка удалить
                                 modalDelete.addEventListener('click', function () {
-                                    modal.style.display = 'none';
+                                    modalOverlay.style.display = 'none';
                                     //аля csrf
                                     const token = document.querySelector('meta[name="csrf-token"]').content;
                                     //принимает url
@@ -201,7 +203,7 @@
                                 buttons.forEach(function (button) {
                                     button.addEventListener('click', function () {
                                         //показать окно подтверждения
-                                        modal.style.display = 'flex'
+                                        modalOverlay.style.display = 'flex';
                                         //вытащитть id заказа последный элемент показывает там id в ссылке
                                         const orderId = button.dataset.url.split('/').pop();
                                         modalOrderId.textContent = orderId;
