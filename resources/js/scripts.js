@@ -490,6 +490,7 @@ $(window).load(function() {
 /*	FORM
 /*-----------------------------------------------------------------------------------*/
 document.addEventListener("DOMContentLoaded", function() {
-    var myForm;
+    let myForm;
     myForm = new VanillaForm(document.querySelector("form.vanilla"));
 });
+

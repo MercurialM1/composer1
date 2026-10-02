@@ -1,4 +1,13 @@
-
+<style>
+    cropper-shade {
+        border-radius: 50%; !important;
+    }
+    cropper-canvas {
+        width: 500px;
+    !important;
+        height: 750px;
+    }
+</style>
 <div id="content" class="main-content">
     <div class="container">
 
@@ -53,9 +62,16 @@
                                 <input  class="form-control"    type="number" name="delivery" aria-describedby="basic-addon1" value="{{old('delivery')}}">
                             </div>
 
-                            <div class="form-group mb-4 ">
-                                <label for="exampleFormControlFile1">Фото</label>
-                                <input  type="file" name="image" class="btn btn-secondary  mb-2 me-4" id="exampleFormControlFile1">
+                            <div>
+                                <input type="file" id="imageInput" name="image" accept="image/*" class="mb-4">
+                                <div>
+                                    <img id="croppedImage" alt="Cropped Image" class="hidden bg-blue-500 text-white px-4 py-2 rounded-md">
+                                </div>
+                                <div>
+                                    <button id="crop-button" type="button">Обрезать</button>
+                                </div>
+
+                                <img id="resultImage"  src="" alt="" style="max-width: 100%; border-radius:50%">
                             </div>
 
                             <div class="form-check form-check-primary form-check-inline">
@@ -67,7 +83,7 @@
                                 <span class="input-group-text" id="basic-addon1">Порядок</span>
                                 <input type="number" name="sort" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value="{{ old('sort', 0) }}">
                             </div>
-                            <input type="submit"  class="mt-4 mb-4 btn btn-primary">
+                            <input type="submit" class="mt-4 mb-4 btn btn-primary">
 
                         </form>
 

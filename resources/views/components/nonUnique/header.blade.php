@@ -18,27 +18,27 @@
                         <li><a href="index4.html">Home Layout 4</a></li>
                         <li><a href="index5.html">Home Layout 5</a></li>
                         <li><a href="{{ url('/') }}">Home Layout All</a></li>
-                        <li><a href="{{route ('animation') }}">Scroll Animation</a></li>
-                        <li><a href="{{route('onepage')}}">Onepage Layout</a></li>
+                        <li><a href="#">Scroll Animation</a></li>
+                        <li><a href="#">Onepage Layout</a></li>
                     </ul>
                 </li>
                 <li class="dropdown"><a href="#" class="dropdown-toggle js-activated" data-toggle="dropdown">Sliders <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ route ('sliderControl')}}">Fullscreen Slider</a></li>
+                        <li><a href="#">Fullscreen Slider</a></li>
                         <li><a href="slider2.html">Fullwidth Slider</a></li>
                         <li><a href="slider3.html">Boxed Slider</a></li>
                     </ul>
                 </li>
                 <li class="dropdown"><a href="#" class="dropdown-toggle js-activated" data-toggle="dropdown">Headers <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ route('header') }}">Transparent</a></li>
+                        <li><a href="#">Transparent</a></li>
                         <li><a href="header2.html">Solid</a></li>
                         <li><a href="header3.html">Detailed</a></li>
                     </ul>
                 </li>
                 <li class="dropdown"><a href="#" class="dropdown-toggle js-activated" data-toggle="dropdown">Portfolio <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ route('portfolio') }}">Portfolio</a></li>
+                        <li><a href="#">Portfolio</a></li>
                         <li><a href="portfolio2.html">Portfolio 2</a></li>
                         <li><a href="portfolio3.html">Portfolio 3</a></li>
                         <li><a href="portfolio-post.html">Portfolio Post </a></li>
@@ -52,7 +52,7 @@
                 </li>
                 <li class="dropdown"><a href="#" class="dropdown-toggle js-activated" data-toggle="dropdown">Blog <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ route('blog') }}">Blog 1</a></li>
+                        <li><a href="#">Blog 1</a></li>
                         <li><a href="blog2.html">Blog 2</a></li>
                         <li><a href="blog3.html">Blog 3</a></li>
                         <li><a href="blog4.html">Blog 4</a></li>
@@ -65,23 +65,23 @@
                     <ul class="dropdown-menu">
                         <li><a href="{{ route ('about1') }}">About 1</a></li>
                         <li><a href="about2.html">About 2</a></li>
-                        <li><a href="{{ route('services')}}">Services 1</a></li>
+                        <li><a href="#">Services 1</a></li>
                         <li><a href="services2.html">Services 2</a></li>
-                        <li><a href="{{ route ('faq')}}">FAQ</a></li>
+                        <li><a href="#">FAQ</a></li>
                         <li><a href="{{ route('contact') }}">Contact</a></li>
                         <li><a href="contact2.html">Contact 2</a></li>
                     </ul>
                 </li>
                 <li class="dropdown"><a href="#" class="dropdown-toggle js-activated" data-toggle="dropdown">Features <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{  route ('elements') }}">Elements</a></li>
-                        <li><a href="{{  route ('charts') }}">Charts</a></li>
-                        <li><a href="{{  route ('pricing') }}">Pricing Tables</a></li>
-                        <li><a href="{{  route ('headings') }}">Headings</a></li>
-                        <li><a href="{{  route ('disqus') }}">Disqus</a></li>
-                        <li><a href="{{  route ('icon-lulu') }}">Lulu Icons</a></li>
-                        <li><a href="{{  route ('icon-budicon') }}">Budicon Icons</a></li>
-                        <li><a href="{{  route ('icon-fontello') }}">Fontello Icons</a></li>
+                        <li><a href="#">Elements</a></li>
+                        <li><a href="#">Charts</a></li>
+                        <li><a href="#">Pricing Tables</a></li>
+                        <li><a href="#">Headings</a></li>
+                        <li><a href="#">Disqus</a></li>
+                        <li><a href="#">Lulu Icons</a></li>
+                        <li><a href="#">Budicon Icons</a></li>
+                        <li><a href="#">Fontello Icons</a></li>
                     </ul>
                 </li>
             </ul>
