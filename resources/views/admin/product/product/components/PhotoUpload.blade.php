@@ -99,9 +99,11 @@
                         <div class="image-container">
                             <img id="image" src="" alt="img for crop">
                         </div>
+                        <div class="mb-2 me-4">
                         <div class="button-container">
                             <input type="file" id="file-input" accept="image/*">
-                            <button id="crop-button">Crop</button>
+                            <button id="crop-button" class="btn btn-primary"  type="button">Crop</button>
+                        </div>
                         </div>
                         <div class="preview-container">
                             <img id="preview" src="" alt="preview crop">

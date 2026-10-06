@@ -8,7 +8,6 @@ import './bootstrap';
  * и отправляет его с формы на сервер при сохранении
  */
 import Cropper from "cropperjs";
-
 let cropper
 document.addEventListener('DOMContentLoaded', () => {
     const imageInput = document.getElementById('imageInput')
@@ -30,11 +29,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 //убирать прошлую фотку если она есть
                 if (cropper) cropper.destroy();
                 //создание самого кроппера
-                cropper = new Cropper(croppedImage, {
-                    background: false,
-                    aspectRatio: 1,
-                    viewMode: 1
-                })
+                cropper = new Cropper(croppedImage);
+
+                // свойства
+                const canvas = cropper.getCropperCanvas();
+                const selection = cropper.getCropperSelection();
+
+                //фон
+                if (canvas) {
+                    canvas.background = false;
+                    canvas.style.position = 'relative';
+                }
+                // рамка
+                if (selection) {
+                    selection.aspectRatio = 1;
+                    // что бы не выходить за границы
+                    selection.bounds = 'parent';
+                }
                 //меняет display none на inline block
                 cropButton.style.display = 'inline-block'
             }
@@ -45,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
     cropButton.addEventListener('click', () => {
         if (cropper) {
             //создаёт обрезанную фотку
-            cropper.getCropperSelection().$toCanvas()
+        cropper.getCropperSelection().$toCanvas()
                 .then((canvas) => {
                     //Конвертация объекта в файл
                     canvas.toBlob((blob) => {
@@ -53,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         //создаём объект dataTransfer и добавляем туда наш сверху созданный
                         const dt = new DataTransfer();
                         dt.items.add(file);
-                        //присваеваем к отправке формы
+                        //присваиваем к отправке формы
                         imageInput.files = dt.files;
                         //показать саму обрезанную фотку
                         const resultImage = document.getElementById('resultImage');

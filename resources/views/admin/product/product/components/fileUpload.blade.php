@@ -62,17 +62,28 @@
                                 <input  class="form-control"    type="number" name="delivery" aria-describedby="basic-addon1" value="{{old('delivery')}}">
                             </div>
 
-                            <div>
-                                <input type="file" id="imageInput" name="image" accept="image/*" class="mb-4">
-                                <div>
-                                    <img id="croppedImage" alt="Cropped Image" class="hidden bg-blue-500 text-white px-4 py-2 rounded-md">
-                                </div>
-                                <div>
-                                    <button id="crop-button" type="button">Обрезать</button>
-                                </div>
+                            <div class="d-flex align-items-center justify-content-between" style="gap: 20px;">
+                                <div class="flex-grow-2" style="width: 800px;">
+                                    <link rel="stylesheet" href="/css/cropper.css">
 
-                                <img id="resultImage"  src="" alt="" style="max-width: 100%; border-radius:50%">
+                                    <div class="mb-2">
+                                        <input type="file" id="imageInput" name="image" accept="image/*" class="btn btn-primary">
+                                    </div>
+
+                                    <div>
+                                        <button class="btn btn-primary" id="crop-button" style="display: none" type="button">Обрезать</button>
+                                    </div>
+
+                                    <div>
+                                        <img id="croppedImage" alt="" class="hidden bg-blue-500 text-white px-4 py-2 rounded-md">
+                                    </div>
+                                </div>
+                                <div style="flex-shrink: 10; width: 350px; text-align: center;" class="hidden">
+                                    <h4 style="margin-left: -300px;">Результат</h4>
+                                    <img id="resultImage" src="" alt="" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 50%;margin-left: -300px;">
+                                </div>
                             </div>
+
 
                             <div class="form-check form-check-primary form-check-inline">
                                 <input type="hidden" name="is_active" value="0">
