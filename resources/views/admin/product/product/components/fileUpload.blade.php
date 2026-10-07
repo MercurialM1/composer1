@@ -5,7 +5,7 @@
     cropper-canvas {
         width: 500px;
     !important;
-        height: 750px;
+        height: 650px;
     }
 </style>
 <div id="content" class="main-content">
@@ -41,7 +41,7 @@
                                 <input class="form-check-input" type="checkbox" id="form-check-default"  name="productcategories[]" value="{{ $category->id }}">
                             </label>
                             @endforeach
-                            <div class="form-group mb-4">
+                            <div class="form-group mb-4" style="width: 350px">
                                 <label for="exampleFormControlInput2">Название</label>
                                 <input class="form-control"  type="text" name="name" placeholder="Название" aria-describedby="basic-addon1" value="{{old('name')}}">
                             </div>
@@ -49,19 +49,20 @@
                                 <label for="exampleFormControlInput2">Описание</label>
                                 <textarea class="form-control" name="description" aria-label="With textarea">{{old('description')}}</textarea>
                             </div>
-                            <div class="form-group mb-4">
+                        <div class="d-flex align-items-end gap-3 mb-4">
+                            <div class="form-group mb-4" style="width: 200px">
                                 <label for="exampleFormControlInput2">Цена</label>
                                 <input class="form-control"  type="number" name="price" placeholder="Цена" aria-describedby="basic-addon1" value="{{old('price')}}">
                             </div>
-                            <div class="form-group mb-4">
+                            <div class="form-group mb-4" style="width: 200px">
                                 <label for="exampleFormControlInput2">Количество</label>
                                 <input class="form-control"   type="number" name="count" placeholder="Количество" aria-describedby="basic-addon1" value="{{old('count')}}">
                             </div>
-                            <div class="form-group mb-4">
+                            <div class="form-group mb-4" style="width: 200px">
                                 <label for="exampleFormControlInput2">Доставка</label>
                                 <input  class="form-control"    type="number" name="delivery" aria-describedby="basic-addon1" value="{{old('delivery')}}">
                             </div>
-
+                        </div>
                             <div class="d-flex align-items-center justify-content-between" style="gap: 20px;">
                                 <div class="flex-grow-2" style="width: 800px;">
                                     <link rel="stylesheet" href="/css/cropper.css">

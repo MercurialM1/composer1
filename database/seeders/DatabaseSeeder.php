@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             ProductCategorySeeder::class,
             UserSeeder::class,
             SliderSeeder::class,
+            OrderSeeder::class,
 
         ]);
         // User::factory(10)->create();

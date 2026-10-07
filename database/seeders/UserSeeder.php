@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
     {
         $faker = fake('ru_RU');
 
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 51; $i++) {
             User::firstOrcreate([
                 'name' => $faker->name(),
                 'email' => $faker->unique()->email(),

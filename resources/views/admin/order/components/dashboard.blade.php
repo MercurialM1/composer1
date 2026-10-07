@@ -4,6 +4,32 @@
             <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
                 <div class="statbox widget box box-shadow">
                     <div class="widget-header">
+                        <div class="dt--top-section">
+                            <div class="row">
+                                <form action="{{route('admin.order.index')}}" method="GET" class="mb-4">
+                                <div class="col-12 col-sm-6 d-flex justify-content-sm-start justify-content-center">
+                                    <div class="dataTables_length" id="zero-config_length">
+                                        <h4>Показать на странице</h4>
+                                        <div class="d-flex align-items-center gap-2">
+                                        <select name="perPage" aria-controls="zero-config" class="form-control" style="width: 63px;">
+                                                <option value="7"{{ request('perPage') == 7 ? 'selected' : '' }}>7</option>
+                                                <option value="10"{{ request('perPage') == 10 ? 'selected' : '' }}>10</option>
+                                                <option value="20"{{ request('perPage') == 20 ? 'selected' : '' }}>20</option>
+                                                <option value="50"{{ request('perPage') == 50 ? 'selected' : '' }}>50</option>
+                                        </select>
+                                        <button type="submit" class="btn btn-primary">Показать</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                    <h4>Поиск</h4>
+                                    <div class="col-12 col-sm-6 d-flex justify-content-sm-end justify-content-center align-items-center gap-2 mt-sm-0 mt-3">
+                                        <input type="text" name="query" value="{{$query}}" class="form-control" placeholder="Имя/Товар/Комментарий/Сумма">
+                                        <button class="btn btn-primary" type="submit">Поиск</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-xl-12 col-md-12 col-sm-12 col-12">
                                 <h4>Заказы</h4>
@@ -23,22 +49,39 @@
                                         {{session('error')}}
                                     </div>
                                 @endif
+                                    @if($orders->count() > 0)
                                 <table id="zero-config"
                                        class="table dt-table-hover" style="width:100%">
                                     <thead>
                                     <tr>
-                                        <th>ID</th>
+                                        <th>
+                                            <a href="{{route('admin.order.index',['sort'=>'id','direction' => ($direction === 'asc' && $sortField === 'id') ? 'desc' : 'asc'])}}">
+                                                ID
+                                                @if($sortField === 'id')
+                                                    {!! $direction === 'asc' ? '&#9650;' : '&#9660;' !!}
+                                                @endif
+                                            </a>
+                                        </th>
                                         <th>Пользователь</th>
                                         <th>Товар</th>
                                         <th>Комментарий</th>
                                         <th>Статус</th>
-                                        <th>Сумма</th>
-                                        <th>Дата</th>
+                                        <th>
+                                            <a href="{{route('admin.order.index',['sort'=>'total_price','direction' => ($direction === 'asc' && $sortField === 'total_price') ? 'desc' : 'asc'])}}">
+                                                Сумма
+                                            @if($sortField === 'total_price')
+                                                {!! $direction === 'asc' ? '&#9650;' : '&#9660;' !!}
+                                            @endif
+                                        </th>
+                                        <th> <a href="{{route('admin.order.index',['sort'=>'created_at','direction' => ($direction === 'asc' && $sortField === 'created_at') ? 'desc' : 'asc'])}}">
+                                                Дата
+                                            @if($sortField === 'created_at')
+                                                {!! $direction === 'asc' ? '&#9650;' : '&#9660;' !!}
+                                            @endif</th>
                                         <th>Действия</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-
                                     @foreach($orders as $order)
                                         <tr>
                                             <td>
@@ -56,7 +99,7 @@
                                                 {{$order->comment}}
                                             </td>
                                             <td>
-                                                <select class="status-select" data-order-id="{{ $order->id }}">
+                                                <select class="status-select form-select form-select-sm" aria-label=".form-select-sm example" data-order-id="{{ $order->id }}" style="width: 143px;">
                                                     <option
                                                         value="new" {{ $order->status == 'new' ? 'selected' : '' }}>
                                                         Новый
@@ -75,8 +118,8 @@
                                                     </option>
                                                 </select>
                                                 <button type="button"
-                                                        class="update-status-btn"
-                                                        data-url="{{ route('admin.order.update', $order->id) }}">Выбрать
+                                                        class="update-status-btn btn btn-primary"
+                                                        data-url="{{ route('admin.order.update', $order->id) }}" style="width: 143.183px;">Выбрать
                                                 </button>
                                             </td>
                                             <td>
@@ -87,7 +130,7 @@
                                             </td>
                                             <td>
                                                 <button type="button"
-                                                        class="delete-order-btn"
+                                                        class="delete-order-btn btn btn-danger btn-rounded mb-2 me-4"
                                                         data-url="{{route('admin.order.destroy',$order->id)}}">удалить
                                                 </button>
                                             </td>
@@ -96,6 +139,12 @@
 
                                     </tbody>
                                 </table>
+
+                                    @endif
+                                    <div>
+                                        {{ $orders->appends(request()->query())->links('pagination::bootstrap-5') }}
+                                    </div>
+                                    </div>
                                     <div class="modal-overlay" id="modal-overlay">
                                 <div class="alert custom-alert-1 alert-dismissible mb-4"
                                      role="alert" id="modal-window">
