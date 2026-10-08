@@ -28,21 +28,17 @@ class AdminOrderController extends Controller
     {
         //защита от sql инъекции
         $sortable = ['id', 'total_price', 'created_at'];
-        in_array($request->get('sort'), $sortable) ? $request->get('sort') : 'id';
-        //поле сортировки по стандарту это id
-        $sortField = $request->input('sort', 'id');
+        //валидация столбцов сверху и само поле сортировки (по стандарту id)
+        $sortField = in_array($request->input('sortField', 'id'), $sortable) ? $request->input('sortField', 'id') : 'id';
         //направления сортировки (по возрастанию и убыванию)
-        $direction = $request->get('direction') === 'desc' ? 'desc' : 'asc';
+        $direction = $request->direction === 'desc' ? 'desc' : 'asc';
 
         //пагинация на странице
-        $perPage = $request->input('perPage');
+        $perPage = $request->input('perPage',7);
         //поиск
         $query = $request->input('query');
         $orders = $this->adminOrderRepository->searcher($query, $perPage, $sortField, $direction);
-
-        $orders->appends(request()->only(['query', 'perPage', 'sort', 'direction']));
-
-
+        $orders->appends(request()->only(['query', 'perPage', 'sortField', 'direction']));
         return view('admin.order.index', compact('orders', 'query', 'perPage', 'sortField', 'direction'));
     }
 

@@ -14,15 +14,21 @@ class AdminOrderRepository
     /**
      * Это сам поиск который реализован в виде обращения к модели
      */
-    public function searcher($query = null, $perPage = null, string $sortField = 'id', $direction = 'asc')
+    public function searcher($query = null, $perPage = null, string $sortField = null, $direction = 'asc')
     {
         //если поисковой запрос не пустой тогда запускается сам поиск
         if (!empty($query)) {
-            return Order::search($query)
+            $orders = Order::search($query)
                 ->query(fn($builder) => $builder
-                    ->with(['user', 'items.product'])
-                    ->orderBy($sortField, $direction))
+                    ->with(['user', 'items.product']))
                 ->paginate($perPage);
+            //сортировка столбцов и их сохранение при поиске
+            $collection = $orders->getCollection();
+            $sorted = $direction === 'desc'
+                ? $collection->sortByDesc($sortField)->values()
+                : $collection->sortBy($sortField)->values();
+            $orders->setCollection($sorted);
+            return $orders;
         }
         //это если он пустой то просто пернуть с пагинацией
         return Order::with(['user', 'items.product'])

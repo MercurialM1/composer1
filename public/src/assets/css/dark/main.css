@@ -2724,7 +2724,7 @@ body.dark .table thead {
 }
 body.dark .table thead tr th {
   border: none;
-  background: #060818;
+  background: #1b2e4b;
   padding: 10px 21px 10px 21px;
   vertical-align: middle;
 }
@@ -3363,7 +3363,7 @@ body.dark .position-relative {
 */
 /*      Avatar      */
 /* .search-form-control { border-radius: .25rem; } */
-/*  
+/*
     ====================
         Table
     ====================
@@ -3373,23 +3373,23 @@ body.dark .position-relative {
     Hover
 
 */
-/* 
+/*
     Hover and Striped
 */
-/* 
+/*
 
     Striped
 
 */
-/* 
+/*
     Striped and Bordered
 */
-/* 
+/*
 
     Bordered
 
 */
-/* 
+/*
     Bordered and Hover
 */
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
@@ -3418,21 +3418,21 @@ body.dark .position-relative {
     transform: rotate(359deg);
   }
 }
-/*  
+/*
     ==========================
-        Background Colors  
+        Background Colors
     ==========================
 */
-/*  
-    Default  
+/*
+    Default
 */
-/*  
-    Light Background  
+/*
+    Light Background
 */
-/*  
+/*
     Progress Bar
 */
-/* 
+/*
     =====================
         BreadCrumbs
     =====================
