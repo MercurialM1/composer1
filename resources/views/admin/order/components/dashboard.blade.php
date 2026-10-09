@@ -15,18 +15,24 @@
                                     <div class="dataTables_length" id="zero-config_length">
                                         <form action="{{ route('admin.order.index') }}" method="GET"
                                               class="d-flex align-items-center gap-2">
+                                            @if(request('query','page'))
+                                                <input type="hidden" name="query" value="{{ request('query','page') }}">
+                                            @endif
+                                            <input type="hidden" name="sortField" value="{{ request('sortField', 'id') }}">
+                                            <input type="hidden" name="direction" value="{{ request('direction', 'asc') }}">
+
                                             <label>Показывать:
-                                                <select name="perPage" class="form-control">
-                                                    <option value="7">7</option>
-                                                    <option value="10">10</option>
-                                                    <option value="20">20</option>
-                                                    <option value="50">50</option>
+                                                <select name="perPage" class="form-control" onchange="this.form.submit()">
+                                                    <option value="7" {{ request('perPage') == 7 ? 'selected' : '' }}>7</option>
+                                                    <option value="10" {{ request('perPage') == 10 ? 'selected' : '' }}>10</option>
+                                                    <option value="20" {{ request('perPage') == 20 ? 'selected' : '' }}>20</option>
+                                                    <option value="50" {{ request('perPage') == 50 ? 'selected' : '' }}>50</option>
                                                 </select>
                                             </label>
-                                            <button type="submit" class="btn btn-primary">Показать</button>
                                         </form>
                                     </div>
                                 </div>
+
                                 <div
                                     class="col-12 col-sm-6 d-flex justify-content-sm-end justify-content-center mt-sm-0 mt-3">
                                     <div id="zero-config_filter" class="dataTables_filter">
@@ -34,6 +40,11 @@
                                               class="d-flex align-items-center gap-2">
                                             <input type="hidden" name="sortField" value="{{ request('sortField', 'id') }}">
                                             <input type="hidden" name="direction" value="{{ request('direction', 'asc') }}">
+                                            @if(request('perPage','page'))
+                                                <input type="hidden" name="perPage" value="{{ request('perPage','page') }}">
+                                            @endif
+
+
                                             <label>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                      viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -72,7 +83,7 @@
                                             <thead>
                                             <tr role="row">
                                                 <th>
-                                                    <a href="{{route('admin.order.index',['query'=>request('query'),'sortField'=>'id','direction' => ($direction === 'asc' && $sortField === 'id') ? 'desc' : 'asc'])}}">
+                                                    <a href="{{route('admin.order.index',['query'=>request('query'),'sortField'=>'id','direction' => ($direction === 'asc' && $sortField === 'id') ? 'desc' : 'asc','perPage' => request('perPage'),'page' => request('page')])}}">
                                                         ID
                                                         @if($sortField === 'id')
                                                             {!! $direction === 'asc' ? '&#9650;' : '&#9660;' !!}
@@ -84,14 +95,14 @@
                                                 <th>Комментарий</th>
                                                 <th>Статус</th>
                                                 <th>
-                                                    <a href="{{route('admin.order.index',['query'=>request('query'),'sortField'=>'total_price','direction' => ($direction === 'asc' && $sortField === 'total_price') ? 'desc' : 'asc'])}}">
+                                                    <a href="{{route('admin.order.index',['query'=>request('query'),'sortField'=>'total_price','direction' => ($direction === 'asc' && $sortField === 'total_price') ? 'desc' : 'asc','perPage' => request('perPage'),'page' => request('page')])}}">
                                                         Сумма
                                                     @if($sortField === 'total_price')
                                                         {!! $direction === 'asc' ? '&#9650;' : '&#9660;' !!}
                                                     @endif
                                                 </th>
                                                 <th>
-                                                    <a href="{{route('admin.order.index',['query'=>request('query'),'sortField'=>'created_at','direction' => ($direction === 'asc' && $sortField === 'created_at') ? 'desc' : 'asc'])}}">
+                                                    <a href="{{route('admin.order.index',['query'=>request('query'),'sortField'=>'created_at','direction' => ($direction === 'asc' && $sortField === 'created_at') ? 'desc' : 'asc','perPage' => request('perPage'),'page' => request('page')])}}">
                                                         Дата
                                                     @if($sortField === 'created_at')
                                                         {!! $direction === 'asc' ? '&#9650;' : '&#9660;' !!}

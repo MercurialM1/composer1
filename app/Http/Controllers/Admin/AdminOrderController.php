@@ -32,7 +32,6 @@ class AdminOrderController extends Controller
         $sortField = in_array($request->input('sortField', 'id'), $sortable) ? $request->input('sortField', 'id') : 'id';
         //направления сортировки (по возрастанию и убыванию)
         $direction = $request->direction === 'desc' ? 'desc' : 'asc';
-
         //пагинация на странице
         $perPage = $request->input('perPage',7);
         //поиск
