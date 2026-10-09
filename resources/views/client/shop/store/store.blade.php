@@ -1,6 +1,15 @@
 
 <div class="light-wrapper">
     <div class="container inner">
+        <div class="page-meta">
+            <nav class="breadcrumb-style-one" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{route('cabinet')}}">Главная</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Товары</li>
+                </ol>
+            </nav>
+        </div>
+        <h1>Наши товары</h1>
         <div class="blog grid-view col3">
             <div class="blog-posts text-boxes">
 

@@ -11,7 +11,7 @@
                     </div>
                 @endforeach
             </div>
-            <h2>Darova,{{auth()->user()->name }}</h2>
+            <h1>Darova,{{auth()->user()->name }}</h1>
             <h3>Добро пожаловать</h3>
         </div>
         <div class="cbp-panel">

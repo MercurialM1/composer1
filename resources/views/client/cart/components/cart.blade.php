@@ -1,5 +1,15 @@
 <div class="light-wrapper">
+
     <div class="container inner">
+        <div class="page-meta">
+            <nav class="breadcrumb-style-one" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{route('cabinet')}}">Главная</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('cabinet.shop')}}">Товары</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Корзина</li>
+                </ol>
+            </nav>
+        </div>
         <div class="blog grid-view">
             <div class="table-responsive">
                 <table class="table table-striped table-bordered align-middle">
