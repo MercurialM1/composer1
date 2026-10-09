@@ -1,6 +1,10 @@
 <div class="light-wrapper">
     <div class="container inner">
         <div class="headline text-center">
+            <meta charset="UTF-8">
+            <meta name="title" content="{{$seo->meta_title}}">
+            <meta name="description" content="{{$seo->meta_description}}">
+            <meta name="keywords" content="{{$seo->meta_keywords}}">
             <div class="alert alert-success">
                 <span>Уведомление</span>
                 @foreach(auth()->user()->unreadNotifications->take(1) as $notification)

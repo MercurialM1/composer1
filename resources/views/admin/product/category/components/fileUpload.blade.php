@@ -34,10 +34,6 @@
                             @if(isset($category))
                                 @method('PUT')
                             @endif
-{{--                            <div class="form-group mb-4">--}}
-{{--                                <label for="exampleFormControlInput2">Название</label>--}}
-{{--                                <input type="text" name="name" value="{{ old('name',$category->name ?? '') }}">--}}
-{{--                            </div>--}}
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Название</span>
                                 <input type="text" class="form-control" placeholder="Введите название категории" aria-label="Username" aria-describedby="basic-addon1" value="{{ old('name',$category->name ?? '') }}">

@@ -32,6 +32,8 @@ Route::prefix('admin')
         ]);
         Route::resource('order',\App\Http\Controllers\Admin\AdminOrderController::class)->only(['index','destroy', 'update','show']);
 
+        Route::resource('seo', \App\Http\Controllers\Admin\SeoController::class)->only(['update', 'edit'])->names(['edit' => 'seo.edit', 'update' => 'seo.update']);
+
         Route::resource('productcategory',ProductCategoryController::class)->names([
             'index' => 'productcategory.index',
             'create' => 'productcategory.create',

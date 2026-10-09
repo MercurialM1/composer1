@@ -137,6 +137,22 @@
                     </li>
                 </ul>
             </li>
+            <li class="menu {{ request()->routeIs('admin.seo.*') ? 'active' : '' }}"> {{-- что бы не светилась всегда --}}
+                <a href="#seo-menu" data-bs-toggle="collapse" aria-expanded="{{ request()->routeIs('admin.seo.*') ? 'true' : '' }}" class="dropdown-toggle{{request()->routeIs('admin.order.*') ? '' : ' collapsed'}}">
+                    <div class="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                        <span>SEO</span>
+                    </div>
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </div>
+                </a>{{--что бы было открыто когда она выбрана --}}
+                <ul class="collapse submenu list-unstyled {{ request()->routeIs('admin.seo.*') ? 'show' : '' }}" id="seo-menu" data-bs-parent="#accordionExample">
+                    <li class="{{ request()->routeIs('admin.seo.edit') ? 'active' : '' }}">
+                        <a href="{{route('admin.seo.edit', ['seo' => 'home'])}}">Настройка SEO</a>
+                    </li>
+                </ul>
+            </li>
 
 
         </ul>
