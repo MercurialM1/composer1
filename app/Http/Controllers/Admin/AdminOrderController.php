@@ -37,7 +37,7 @@ class AdminOrderController extends Controller
         //поиск
         $query = $request->input('query');
         $orders = $this->adminOrderRepository->searcher($query, $perPage, $sortField, $direction);
-        $orders->appends(request()->only(['query', 'perPage', 'sortField', 'direction']));
+        $orders->appends(request()->only(['query', 'perPage', 'sortField', 'direction','page']));
         return view('admin.order.index', compact('orders', 'query', 'perPage', 'sortField', 'direction'));
     }
 

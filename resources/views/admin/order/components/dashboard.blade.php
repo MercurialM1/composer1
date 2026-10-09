@@ -15,11 +15,12 @@
                                     <div class="dataTables_length" id="zero-config_length">
                                         <form action="{{ route('admin.order.index') }}" method="GET"
                                               class="d-flex align-items-center gap-2">
-                                            @if(request('query','page'))
-                                                <input type="hidden" name="query" value="{{ request('query','page') }}">
+                                            @if(request('query'))
+                                                <input type="hidden" name="query" value="{{ request('query') }}">
                                             @endif
                                             <input type="hidden" name="sortField" value="{{ request('sortField', 'id') }}">
                                             <input type="hidden" name="direction" value="{{ request('direction', 'asc') }}">
+                                                <input type="hidden" name="page" value="1">
 
                                             <label>Показывать:
                                                 <select name="perPage" class="form-control" onchange="this.form.submit()">
@@ -40,10 +41,10 @@
                                               class="d-flex align-items-center gap-2">
                                             <input type="hidden" name="sortField" value="{{ request('sortField', 'id') }}">
                                             <input type="hidden" name="direction" value="{{ request('direction', 'asc') }}">
-                                            @if(request('perPage','page'))
-                                                <input type="hidden" name="perPage" value="{{ request('perPage','page') }}">
+                                            @if(request('perPage'))
+                                                <input type="hidden" name="perPage" value="{{ request('perPage') }}">
                                             @endif
-
+                                            <input type="hidden" name="page" value="1">
 
                                             <label>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
